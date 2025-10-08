@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Partidos de Hoy</title>
+</head>
+<body>
+  <h2>⚽ Partidos de Hoy</h2>
+  <div id="agenda">Cargando...</div>
+
+  <script>
+    // Llamamos a TU backend en Vercel, no a la API externa
+    fetch('/api/partidos')
+      .then(res => res.json())
+      .then(data => {
+        const hoy = new Date().toISOString().split('T')[0];
+        const partidos = data.matches.filter(m => m.utcDate.startsWith(hoy));
+        const contenedor = document.getElementById('agenda');
+        
+        if (partidos.length === 0) {
+          contenedor.innerHTML = 'No hay partidos hoy.';
+          return;
+        }
+
+        let html = '';
+        partidos.forEach(p => {
+          const hora = new Date(p.utcDate).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+          html += `<p><strong>${hora}</strong> — ${p.homeTeam.name} vs ${p.awayTeam.name}</p>`;
+        });
+        contenedor.innerHTML = html;
+      })
+      .catch(err => {
+        document.getElementById('agenda').innerHTML = '❌ Error: ' + err.message;
+      });
+  </script>
+</body>
+</html>
