@@ -1,1 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>⚽ Partidos de Hoy</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      padding: 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #e74c3c;
+    }
+    .partido {
+      padding: 12px;
+      margin: 12px 0;
+      border-left: 4px solid #3498db;
+      background: #fafafa;
+    }
+    .error {
+      color: red;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⚽ Partidos de Hoy</h1>
+    <div id="agenda">Cargando...</div>
+  </div>
 
+  <script>
+    // Llamamos a NUESTRA API en /api/partidos (no a la externa)
+    fetch('/api/partidos')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error en la API');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const hoy = new Date().toISOString().split('T')[0]; // Ej: "2025-10-08"
+        const partidosHoy = data.matches.filter(m => m.utcDate.startsWith(hoy));
+
+        const contenedor = document.getElementById('agenda');
+
+        if (partidosHoy.length === 0) {
+          contenedor.innerHTML = '<p>No hay partidos programados para hoy.</p>';
+          return;
+        }
+
+        let html = '';
+        partidosHoy.forEach(p => {
+          const fecha = new Date(p.utcDate);
+          const hora = fecha.toLocaleTimeString('es-ES', { 
+            hour: '2-digit', 
+            minute: '2-digit',
+            hour12: false 
+          });
+          const local = p.homeTeam?.name || 'Local';
+          const visitante = p.awayTeam?.name || 'Visitante';
+          const liga = p.competition?.name || 'Competición';
+
+          html += `
+            <div class="partido">
+              <strong>${hora}</strong> — ${local} vs ${visitante}<br>
+              <small>🏆 ${liga}</small>
+            </div>
+          `;
+        });
+
+        contenedor.innerHTML = html;
+      })
+      .catch(err => {
+        document.getElementById('agenda').innerHTML = 
+          `<p class="error">❌ Error al cargar los partidos: ${err.message}</p>`;
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
