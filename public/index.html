@@ -36,7 +36,7 @@
     }
     .canales {
       margin-top: 12px;
-      display: none; /* Oculto por defecto */
+      display: none;
     }
     .btn {
       display: inline-block;
@@ -50,11 +50,6 @@
     }
     .btn:hover {
       background: #c0392b;
-    }
-    .toggle-btn {
-      background: #3498db;
-      font-size: 0.85em;
-      padding: 4px 10px;
     }
     .error {
       color: red;
@@ -70,6 +65,50 @@
   </div>
 
   <script>
+    // 🗺️ Mapa de códigos de liga → canales oficiales
+    const mapaCanales = {
+      // Códigos oficiales de Football-Data.org
+      "PL": [ // Premier League (Inglaterra)
+        { nombre: "Star+", url: "https://www.starplus.com" },
+        { nombre: "DAZN", url: "https://www.dazn.com" }
+      ],
+      "PD": [ // Primera División (España)
+        { nombre: "Star+", url: "https://www.starplus.com" },
+        { nombre: "Movistar+", url: "https://www.movistarplus.es" }
+      ],
+      "SA": [ // Serie A (Italia)
+        { nombre: "Star+", url: "https://www.starplus.com" },
+        { nombre: "DAZN", url: "https://www.dazn.com" }
+      ],
+      "BL": [ // Bundesliga (Alemania)
+        { nombre: "Star+", url: "https://www.starplus.com" },
+        { nombre: "ESPN", url: "https://www.espn.com" }
+      ],
+      "FL": [ // Ligue 1 (Francia)
+        { nombre: "Star+", url: "https://www.starplus.com" }
+      ],
+      "CL": [ // UEFA Champions League
+        { nombre: "Star+", url: "https://www.starplus.com" },
+        { nombre: "ESPN", url: "https://www.espn.com" }
+      ],
+      "EC": [ // UEFA Europa League
+        { nombre: "Star+", url: "https://www.starplus.com" }
+      ],
+      // Por defecto (cualquier otra liga)
+      "default": [
+        { nombre: "Star+", url: "https://www.starplus.com" },
+        { nombre: "DAZN", url: "https://www.dazn.com" },
+        { nombre: "YouTube", url: "https://www.youtube.com" }
+      ]
+    };
+
+    // 🔁 Función para mostrar/ocultar canales
+    function toggleCanales(index) {
+      const canales = document.getElementById(`canales-${index}`);
+      canales.style.display = canales.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // 📡 Cargar partidos
     fetch('/api/partidos')
       .then(response => {
         if (!response.ok) throw new Error('Error en la API');
@@ -88,19 +127,30 @@
         let html = '';
         partidosHoy.forEach((p, index) => {
           const fecha = new Date(p.utcDate);
-          const hora = fecha.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', hour12: false });
+          const hora = fecha.toLocaleTimeString('es-ES', { 
+            hour: '2-digit', 
+            minute: '2-digit',
+            hour12: false 
+          });
           const local = p.homeTeam?.name || 'Local';
           const visitante = p.awayTeam?.name || 'Visitante';
-          const liga = p.competition?.name || 'Competición';
+          const codigoLiga = p.competition?.code || 'default';
+          const nombreLiga = p.competition?.name || 'Competición';
+
+          // Buscar canales por código (más fiable)
+          const canales = mapaCanales[codigoLiga] || mapaCanales["default"];
+
+          let botones = '';
+          canales.forEach(canal => {
+            botones += `<a href="${canal.url}" class="btn" target="_blank">${canal.nombre}</a>`;
+          });
 
           html += `
             <div class="partido" onclick="toggleCanales(${index})">
               <strong>${hora}</strong> — ${local} vs ${visitante}<br>
-              <small>🏆 ${liga}</small>
+              <small>🏆 ${nombreLiga} (${codigoLiga})</small>
               <div id="canales-${index}" class="canales">
-                <a href="https://futbollibrelibre.com/canales.php?stream=espndeportes" class="btn" target="_blank">Canal 1</a>
-                <a href="https://www.dazn.com" class="btn" target="_blank">Canal 2</a>
-                <a href="https://www.youtube.com/@CONMEBOL" class="btn" target="_blank">Canal 3</a>
+                ${botones}
               </div>
             </div>
           `;
@@ -111,17 +161,8 @@
       .catch(err => {
         document.getElementById('agenda').innerHTML = 
           `<p class="error">❌ Error: ${err.message}</p>`;
+        console.error(err);
       });
-
-    // Función para mostrar/ocultar canales
-    function toggleCanales(index) {
-      const canales = document.getElementById(`canales-${index}`);
-      if (canales.style.display === 'block') {
-        canales.style.display = 'none';
-      } else {
-        canales.style.display = 'block';
-      }
-    }
   </script>
 </body>
 </html>
