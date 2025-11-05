@@ -1,168 +1,67 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>⚽ Partidos de Hoy</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f0f2f5;
-      padding: 20px;
-      margin: 0;
-    }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    h1 {
-      text-align: center;
-      color: #e74c3c;
-    }
-    .partido {
-      padding: 15px;
-      margin: 15px 0;
-      border-left: 4px solid #3498db;
-      background: #fafafa;
-      cursor: pointer;
-      border-radius: 8px;
-    }
-    .partido:hover {
-      background: #f0f7ff;
-    }
-    .canales {
-      margin-top: 12px;
-      display: none;
-    }
-    .btn {
-      display: inline-block;
-      margin: 4px 6px 4px 0;
-      padding: 6px 12px;
-      background: #e74c3c;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 0.9em;
-    }
-    .btn:hover {
-      background: #c0392b;
-    }
-    .error {
-      color: red;
-      text-align: center;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>⚽ Partidos de Hoy</h1>
-    <div id="agenda">Cargando...</div>
-  </div>
+<script>
+  // Mapa de idiomas para tus propios canales
+  const canalesChampions = [
+    { nombre: "HD5", idioma: "Inglés", url: "https://sportzonline.live/channels/hd/hd5.php" },
+    { nombre: "HD6", idioma: "Español", url: "https://sportzonline.live/channels/hd/hd6.php" },
+    { nombre: "Eleven2", idioma: "Portugués", url: "https://sportzonline.live/channels/pt/eleven2.php" },
+    { nombre: "BR3", idioma: "Portugués (Brasil)", url: "https://sportzonline.live/channels/bra/br3.php" }
+  ];
 
-  <script>
-    // 🗺️ Mapa de códigos de liga → canales oficiales
-    const mapaCanales = {
-      // Códigos oficiales de Football-Data.org
-      "PL": [ // Premier League (Inglaterra)
-        { nombre: "Star+", url: "https://www.starplus.com" },
-        { nombre: "DAZN", url: "https://www.dazn.com" }
-      ],
-      "PD": [ // Primera División (España)
-        { nombre: "Star+", url: "https://www.starplus.com" },
-        { nombre: "Movistar+", url: "https://www.movistarplus.es" }
-      ],
-      "SA": [ // Serie A (Italia)
-        { nombre: "Star+", url: "https://www.starplus.com" },
-        { nombre: "DAZN", url: "https://www.dazn.com" }
-      ],
-      "BL": [ // Bundesliga (Alemania)
-        { nombre: "Star+", url: "https://www.starplus.com" },
-        { nombre: "ESPN", url: "https://www.espn.com" }
-      ],
-      "FL": [ // Ligue 1 (Francia)
-        { nombre: "Star+", url: "https://www.starplus.com" }
-      ],
-      "CL": [ // UEFA Champions League
-        { nombre: "Star+", url: "https://www.starplus.com" },
-        { nombre: "ESPN", url: "https://www.espn.com" }
-      ],
-      "EC": [ // UEFA Europa League
-        { nombre: "Star+", url: "https://www.starplus.com" }
-      ],
-      // Por defecto (cualquier otra liga)
-      "default": [
-        { nombre: "Star+", url: "https://www.starplus.com" },
-        { nombre: "DAZN", url: "https://www.dazn.com" },
-        { nombre: "YouTube", url: "https://www.youtube.com" }
-      ]
-    };
+  function toggleCanales(index) {
+    const canales = document.getElementById(`canales-${index}`);
+    canales.style.display = canales.style.display === 'block' ? 'none' : 'block';
+  }
 
-    // 🔁 Función para mostrar/ocultar canales
-    function toggleCanales(index) {
-      const canales = document.getElementById(`canales-${index}`);
-      canales.style.display = canales.style.display === 'block' ? 'none' : 'block';
-    }
+  fetch('/api/partidos')
+    .then(response => {
+      if (!response.ok) throw new Error('Error en la API');
+      return response.json();
+    })
+    .then(data => {
+      const hoy = new Date().toISOString().split('T')[0];
+      const partidosHoy = data.matches.filter(m => m.utcDate.startsWith(hoy));
+      const contenedor = document.getElementById('agenda');
 
-    // 📡 Cargar partidos
-    fetch('/api/partidos')
-      .then(response => {
-        if (!response.ok) throw new Error('Error en la API');
-        return response.json();
-      })
-      .then(data => {
-        const hoy = new Date().toISOString().split('T')[0];
-        const partidosHoy = data.matches.filter(m => m.utcDate.startsWith(hoy));
-        const contenedor = document.getElementById('agenda');
+      if (partidosHoy.length === 0) {
+        contenedor.innerHTML = '<p>No hay partidos programados para hoy.</p>';
+        return;
+      }
 
-        if (partidosHoy.length === 0) {
-          contenedor.innerHTML = '<p>No hay partidos programados para hoy.</p>';
-          return;
+      let html = '';
+      partidosHoy.forEach((p, index) => {
+        const fecha = new Date(p.utcDate);
+        const hora = fecha.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', hour12: false });
+        const local = p.homeTeam?.name || 'Local';
+        const visitante = p.awayTeam?.name || 'Visitante';
+        const codigoLiga = p.competition?.code || '';
+        const nombreLiga = p.competition?.name || 'Competición';
+
+        // Solo para Champions League (código "CL")
+        let botones = '';
+        if (codigoLiga === 'CL') {
+          canalesChampions.forEach(canal => {
+            botones += `<a href="${canal.url}" class="btn" target="_blank">${canal.nombre} (${canal.idioma})</a>`;
+          });
+        } else {
+          // Para otras ligas, usa enlaces genéricos a tu web o a Star+
+          botones = `<a href="https://sportzonline.live" class="btn" target="_blank">Ver en mi web</a>`;
         }
 
-        let html = '';
-        partidosHoy.forEach((p, index) => {
-          const fecha = new Date(p.utcDate);
-          const hora = fecha.toLocaleTimeString('es-ES', { 
-            hour: '2-digit', 
-            minute: '2-digit',
-            hour12: false 
-          });
-          const local = p.homeTeam?.name || 'Local';
-          const visitante = p.awayTeam?.name || 'Visitante';
-          const codigoLiga = p.competition?.code || 'default';
-          const nombreLiga = p.competition?.name || 'Competición';
-
-          // Buscar canales por código (más fiable)
-          const canales = mapaCanales[codigoLiga] || mapaCanales["default"];
-
-          let botones = '';
-          canales.forEach(canal => {
-            botones += `<a href="${canal.url}" class="btn" target="_blank">${canal.nombre}</a>`;
-          });
-
-          html += `
-            <div class="partido" onclick="toggleCanales(${index})">
-              <strong>${hora}</strong> — ${local} vs ${visitante}<br>
-              <small>🏆 ${nombreLiga} (${codigoLiga})</small>
-              <div id="canales-${index}" class="canales">
-                ${botones}
-              </div>
+        html += `
+          <div class="partido" onclick="toggleCanales(${index})">
+            <strong>${hora}</strong> — ${local} vs ${visitante}<br>
+            <small>🏆 ${nombreLiga}</small>
+            <div id="canales-${index}" class="canales">
+              ${botones}
             </div>
-          `;
-        });
-
-        contenedor.innerHTML = html;
-      })
-      .catch(err => {
-        document.getElementById('agenda').innerHTML = 
-          `<p class="error">❌ Error: ${err.message}</p>`;
-        console.error(err);
+          </div>
+        `;
       });
-  </script>
-</body>
-</html>
+
+      contenedor.innerHTML = html;
+    })
+    .catch(err => {
+      document.getElementById('agenda').innerHTML = 
+        `<p class="error">❌ Error: ${err.message}</p>`;
+    });
+</script>
