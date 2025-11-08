@@ -1,0 +1,2445 @@
+{
+  "data": [
+    {
+      "id": 26867,
+      "attributes": {
+        "diary_hour": "12:30:00",
+        "diary_description": "Bundesliga: Borussia M'gladbach vs Köln",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 780,
+              "attributes": {
+                "embed_name": "Universo",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT11bml2ZXJzbw=="
+              }
+            },
+            {
+              "id": 815,
+              "attributes": {
+                "embed_name": "Disney+",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kaXNuZXk2"
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 10,
+            "attributes": {
+              "name": "Alemania",
+              "createdAt": "2023-11-22T15:36:09.022Z",
+              "updatedAt": "2024-01-07T23:13:42.920Z",
+              "publishedAt": "2023-11-22T15:36:10.659Z",
+              "image": {
+                "data": {
+                  "id": 109,
+                  "attributes": {
+                    "name": "alemania.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "alemania_e50aa475de",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.61,
+                    "url": "/uploads/alemania_e50aa475de.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:13:39.849Z",
+                    "updatedAt": "2024-01-07T23:13:39.849Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26874,
+      "attributes": {
+        "diary_hour": "14:30:00",
+        "diary_description": "Primera División: Danubio vs Plaza Colonia",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 818,
+              "attributes": {
+                "embed_name": "Disney+",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kaXNuZXk4"
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 16,
+            "attributes": {
+              "name": "Uruguay",
+              "createdAt": "2023-11-22T15:49:02.025Z",
+              "updatedAt": "2024-01-07T23:51:20.902Z",
+              "publishedAt": "2023-11-22T15:49:03.589Z",
+              "image": {
+                "data": {
+                  "id": 132,
+                  "attributes": {
+                    "name": "uruguay.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "uruguay_e2b9597af8",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.8,
+                    "url": "/uploads/uruguay_e2b9597af8.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:51:18.898Z",
+                    "updatedAt": "2024-01-07T23:51:18.898Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26875,
+      "attributes": {
+        "diary_hour": "14:30:00",
+        "diary_description": "Bundesliga 2: Kaiserslautern vs Hertha BSC ",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 819,
+              "attributes": {
+                "embed_name": "Disney+",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kaXNuZXk5"
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 10,
+            "attributes": {
+              "name": "Alemania",
+              "createdAt": "2023-11-22T15:36:09.022Z",
+              "updatedAt": "2024-01-07T23:13:42.920Z",
+              "publishedAt": "2023-11-22T15:36:10.659Z",
+              "image": {
+                "data": {
+                  "id": 109,
+                  "attributes": {
+                    "name": "alemania.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "alemania_e50aa475de",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.61,
+                    "url": "/uploads/alemania_e50aa475de.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:13:39.849Z",
+                    "updatedAt": "2024-01-07T23:13:39.849Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26872,
+      "attributes": {
+        "diary_hour": "13:00:00",
+        "diary_description": "Primera División: Unión Española vs Colo-Colo",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 424,
+              "attributes": {
+                "embed_name": "TNT Sports Premium CL",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT10bnRzcG9ydHNjaGlsZQ=="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 12,
+            "attributes": {
+              "name": "Chile",
+              "createdAt": "2023-11-22T15:42:40.655Z",
+              "updatedAt": "2024-01-07T23:47:58.476Z",
+              "publishedAt": "2023-11-22T15:42:42.314Z",
+              "image": {
+                "data": {
+                  "id": 128,
+                  "attributes": {
+                    "name": "chile.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "chile_86c07a7b38",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.79,
+                    "url": "/uploads/chile_86c07a7b38.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:47:55.957Z",
+                    "updatedAt": "2024-01-07T23:47:55.957Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26873,
+      "attributes": {
+        "diary_hour": "14:00:00",
+        "diary_description": "Brasileirão: Sport Recife vs Atlético Mineiro",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 180,
+              "attributes": {
+                "embed_name": "Premiere BR ",
+                "idioma": "Portugués",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1wcmVtaWVyZTE="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 1,
+            "attributes": {
+              "name": "Brasil",
+              "createdAt": "2023-11-22T14:40:01.140Z",
+              "updatedAt": "2024-01-07T23:56:59.376Z",
+              "publishedAt": "2023-11-22T14:42:50.953Z",
+              "image": {
+                "data": {
+                  "id": 141,
+                  "attributes": {
+                    "name": "brasil.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "brasil_25a533e5f7",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.85,
+                    "url": "/uploads/brasil_25a533e5f7.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:56:57.083Z",
+                    "updatedAt": "2024-01-07T23:56:57.083Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26864,
+      "attributes": {
+        "diary_hour": "12:00:00",
+        "diary_description": "Serie A: Juventus vs Torino",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 670,
+              "attributes": {
+                "embed_name": "ESPN3",
+                "idioma": "español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1lc3BuMw=="
+              }
+            },
+            {
+              "id": 783,
+              "attributes": {
+                "embed_name": "Disney+",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kaXNuZXkz"
+              }
+            },
+            {
+              "id": 785,
+              "attributes": {
+                "embed_name": "ESPN2 MX",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1lc3BuMm14"
+              }
+            },
+            {
+              "id": 774,
+              "attributes": {
+                "embed_name": "FOX Deportes",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1mb3hkZXBvcnRlcw=="
+              }
+            },
+            {
+              "id": 1214,
+              "attributes": {
+                "embed_name": "ESPN3 Movil",
+                "idioma": null,
+                "embed_iframe": "/embed/eventos?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vZXNwbjMuaHRtbA=="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 9,
+            "attributes": {
+              "name": "Italia",
+              "createdAt": "2023-11-22T15:35:39.269Z",
+              "updatedAt": "2024-01-07T23:53:57.125Z",
+              "publishedAt": "2023-11-22T15:35:40.668Z",
+              "image": {
+                "data": {
+                  "id": 136,
+                  "attributes": {
+                    "name": "italia.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "italia_cb19445d70",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.64,
+                    "url": "/uploads/italia_cb19445d70.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:53:53.740Z",
+                    "updatedAt": "2024-01-07T23:53:53.740Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26865,
+      "attributes": {
+        "diary_hour": "12:00:00",
+        "diary_description": "Süper Lig: Antalyaspor vs Beşiktaş",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 784,
+              "attributes": {
+                "embed_name": "Disney+",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kaXNuZXk0"
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 28,
+            "attributes": {
+              "name": "Turquía",
+              "createdAt": "2023-11-25T14:17:47.734Z",
+              "updatedAt": "2023-11-25T14:17:48.913Z",
+              "publishedAt": "2023-11-25T14:17:48.907Z",
+              "image": {
+                "data": {
+                  "id": 52,
+                  "attributes": {
+                    "name": "pavo.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 128,
+                    "height": 128,
+                    "formats": null,
+                    "hash": "pavo_980d87b7ad",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 1.03,
+                    "url": "/uploads/pavo_980d87b7ad.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2023-11-25T14:17:44.439Z",
+                    "updatedAt": "2023-11-25T14:17:44.439Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26868,
+      "attributes": {
+        "diary_hour": "12:30:00",
+        "diary_description": "LaLiga: Atlético Madrid vs Levante",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 20,
+              "attributes": {
+                "embed_name": "Dsports",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kc3BvcnRz"
+              }
+            },
+            {
+              "id": 770,
+              "attributes": {
+                "embed_name": "ESPN Deportes",
+                "idioma": "español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1lc3BuZGVwb3J0ZXM="
+              }
+            },
+            {
+              "id": 1201,
+              "attributes": {
+                "embed_name": "Dsports Movil",
+                "idioma": null,
+                "embed_iframe": "/embed/eventos?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vZGdvLmh0bWw="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 7,
+            "attributes": {
+              "name": "España",
+              "createdAt": "2023-11-22T15:34:02.037Z",
+              "updatedAt": "2024-08-15T19:18:48.458Z",
+              "publishedAt": "2023-11-22T15:34:03.379Z",
+              "image": {
+                "data": {
+                  "id": 138,
+                  "attributes": {
+                    "name": "espana.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "espana_a8510f9b5f",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.51,
+                    "url": "/uploads/espana_a8510f9b5f.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:55:12.045Z",
+                    "updatedAt": "2024-08-15T16:50:04.760Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26869,
+      "attributes": {
+        "diary_hour": "12:30:00",
+        "diary_description": "La Liga Hypermotion: Deportivo La Coruña vs Cultural Leonesa",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 356,
+              "attributes": {
+                "embed_name": "LaLiga TV Hypermotion",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1oeXBlcm1vdGlvbjE="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 7,
+            "attributes": {
+              "name": "España",
+              "createdAt": "2023-11-22T15:34:02.037Z",
+              "updatedAt": "2024-08-15T19:18:48.458Z",
+              "publishedAt": "2023-11-22T15:34:03.379Z",
+              "image": {
+                "data": {
+                  "id": 138,
+                  "attributes": {
+                    "name": "espana.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "espana_a8510f9b5f",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.51,
+                    "url": "/uploads/espana_a8510f9b5f.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:55:12.045Z",
+                    "updatedAt": "2024-08-15T16:50:04.760Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26870,
+      "attributes": {
+        "diary_hour": "13:00:00",
+        "diary_description": "Liga 1: Ayacucho vs Comerciantes Unidos",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 230,
+              "attributes": {
+                "embed_name": "Liga1max",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1saWdhMW1heA=="
+              }
+            },
+            {
+              "id": 1205,
+              "attributes": {
+                "embed_name": "Liga1max Movil",
+                "idioma": null,
+                "embed_iframe": "/embed/eventos?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vbGlnYTFtYXguaHRtbA=="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 2,
+            "attributes": {
+              "name": "Perú",
+              "createdAt": "2023-11-22T14:50:06.355Z",
+              "updatedAt": "2023-11-22T18:05:40.140Z",
+              "publishedAt": "2023-11-22T15:10:18.533Z",
+              "image": {
+                "data": {
+                  "id": 28,
+                  "attributes": {
+                    "name": "peru.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 128,
+                    "height": 128,
+                    "formats": null,
+                    "hash": "peru_ddc4e685cf",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.87,
+                    "url": "/uploads/peru_ddc4e685cf.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2023-11-22T17:57:17.008Z",
+                    "updatedAt": "2023-11-22T18:05:27.397Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26876,
+      "attributes": {
+        "diary_hour": "14:40:00",
+        "diary_description": "Serie A: Parma vs Milan\n",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 746,
+              "attributes": {
+                "embed_name": "ESPN",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1lc3Bu"
+              }
+            },
+            {
+              "id": 831,
+              "attributes": {
+                "embed_name": "Disney+",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kaXNuZXkxMA=="
+              }
+            },
+            {
+              "id": 704,
+              "attributes": {
+                "embed_name": "ESPN MX",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1lc3BubXg="
+              }
+            },
+            {
+              "id": 1200,
+              "attributes": {
+                "embed_name": "ESPN Movil",
+                "idioma": null,
+                "embed_iframe": "/embed/eventos?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vZXNwbi5odG1s"
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 9,
+            "attributes": {
+              "name": "Italia",
+              "createdAt": "2023-11-22T15:35:39.269Z",
+              "updatedAt": "2024-01-07T23:53:57.125Z",
+              "publishedAt": "2023-11-22T15:35:40.668Z",
+              "image": {
+                "data": {
+                  "id": 136,
+                  "attributes": {
+                    "name": "italia.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "italia_cb19445d70",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.64,
+                    "url": "/uploads/italia_cb19445d70.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:53:53.740Z",
+                    "updatedAt": "2024-01-07T23:53:53.740Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26878,
+      "attributes": {
+        "diary_hour": "15:00:00",
+        "diary_description": "LaLiga: Espanyol vs Villarreal",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 370,
+              "attributes": {
+                "embed_name": "ESPN2",
+                "idioma": "español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1lc3BuMg=="
+              }
+            },
+            {
+              "id": 847,
+              "attributes": {
+                "embed_name": "Disney+",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kaXNuZXkxMg=="
+              }
+            },
+            {
+              "id": 770,
+              "attributes": {
+                "embed_name": "ESPN Deportes",
+                "idioma": "español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1lc3BuZGVwb3J0ZXM="
+              }
+            },
+            {
+              "id": 1204,
+              "attributes": {
+                "embed_name": "ESPN2 Movil",
+                "idioma": null,
+                "embed_iframe": "/embed/eventos?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vZXNwbjIuaHRtbA=="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 7,
+            "attributes": {
+              "name": "España",
+              "createdAt": "2023-11-22T15:34:02.037Z",
+              "updatedAt": "2024-08-15T19:18:48.458Z",
+              "publishedAt": "2023-11-22T15:34:03.379Z",
+              "image": {
+                "data": {
+                  "id": 138,
+                  "attributes": {
+                    "name": "espana.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "espana_a8510f9b5f",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.51,
+                    "url": "/uploads/espana_a8510f9b5f.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:55:12.045Z",
+                    "updatedAt": "2024-08-15T16:50:04.760Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26882,
+      "attributes": {
+        "diary_hour": "15:00:00",
+        "diary_description": "La Liga Hypermotion: Málaga vs Córdoba",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 356,
+              "attributes": {
+                "embed_name": "LaLiga TV Hypermotion",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1oeXBlcm1vdGlvbjE="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 7,
+            "attributes": {
+              "name": "España",
+              "createdAt": "2023-11-22T15:34:02.037Z",
+              "updatedAt": "2024-08-15T19:18:48.458Z",
+              "publishedAt": "2023-11-22T15:34:03.379Z",
+              "image": {
+                "data": {
+                  "id": 138,
+                  "attributes": {
+                    "name": "espana.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "espana_a8510f9b5f",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.51,
+                    "url": "/uploads/espana_a8510f9b5f.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:55:12.045Z",
+                    "updatedAt": "2024-08-15T16:50:04.760Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26881,
+      "attributes": {
+        "diary_hour": "15:00:00",
+        "diary_description": "Liga Profesional: Huracán vs Newell's Old Boys",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 523,
+              "attributes": {
+                "embed_name": "TNT Sports",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT10bnRzcG9ydHM="
+              }
+            },
+            {
+              "id": 1212,
+              "attributes": {
+                "embed_name": "TNT Sports Movil",
+                "idioma": null,
+                "embed_iframe": "/embed/eventos?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vdG50Lmh0bWw="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 3,
+            "attributes": {
+              "name": "Argentina",
+              "createdAt": "2023-11-22T14:52:41.307Z",
+              "updatedAt": "2023-11-22T17:59:52.523Z",
+              "publishedAt": "2023-11-22T14:54:38.957Z",
+              "image": {
+                "data": {
+                  "id": 29,
+                  "attributes": {
+                    "name": "argentina.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 128,
+                    "height": 128,
+                    "formats": null,
+                    "hash": "argentina_2bd748026e",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.92,
+                    "url": "/uploads/argentina_2bd748026e.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2023-11-22T17:59:33.800Z",
+                    "updatedAt": "2023-11-22T17:59:33.800Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26884,
+      "attributes": {
+        "diary_hour": "15:10:00",
+        "diary_description": "Liga 1: Juan Pablo II College vs Atlético Grau",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 230,
+              "attributes": {
+                "embed_name": "Liga1max",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1saWdhMW1heA=="
+              }
+            },
+            {
+              "id": 1205,
+              "attributes": {
+                "embed_name": "Liga1max Movil",
+                "idioma": null,
+                "embed_iframe": "/embed/eventos?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vbGlnYTFtYXguaHRtbA=="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 2,
+            "attributes": {
+              "name": "Perú",
+              "createdAt": "2023-11-22T14:50:06.355Z",
+              "updatedAt": "2023-11-22T18:05:40.140Z",
+              "publishedAt": "2023-11-22T15:10:18.533Z",
+              "image": {
+                "data": {
+                  "id": 28,
+                  "attributes": {
+                    "name": "peru.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 128,
+                    "height": 128,
+                    "formats": null,
+                    "hash": "peru_ddc4e685cf",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.87,
+                    "url": "/uploads/peru_ddc4e685cf.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2023-11-22T17:57:17.008Z",
+                    "updatedAt": "2023-11-22T18:05:27.397Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26885,
+      "attributes": {
+        "diary_hour": "15:30:00",
+        "diary_description": "Primeira Liga: Santa Clara vs Sporting CP",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 724,
+              "attributes": {
+                "embed_name": "GOLTV",
+                "idioma": "español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1nb2x0dg=="
+              }
+            },
+            {
+              "id": 1210,
+              "attributes": {
+                "embed_name": "GOLTV Movil",
+                "idioma": null,
+                "embed_iframe": "/embed/eventos?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vZ29sdHYuaHRtbA=="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 25,
+            "attributes": {
+              "name": "Portugal",
+              "createdAt": "2023-11-24T13:52:13.028Z",
+              "updatedAt": "2023-11-24T13:52:35.439Z",
+              "publishedAt": "2023-11-24T13:52:35.436Z",
+              "image": {
+                "data": {
+                  "id": 48,
+                  "attributes": {
+                    "name": "portugal.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 128,
+                    "height": 128,
+                    "formats": null,
+                    "hash": "portugal_914accbdd5",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 1.2,
+                    "url": "/uploads/portugal_914accbdd5.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2023-11-24T13:52:10.229Z",
+                    "updatedAt": "2023-11-24T13:52:10.229Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26886,
+      "attributes": {
+        "diary_hour": "15:30:00",
+        "diary_description": "Primera División: Palestino vs Coquimbo Unido",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 424,
+              "attributes": {
+                "embed_name": "TNT Sports Premium CL",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT10bnRzcG9ydHNjaGlsZQ=="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 12,
+            "attributes": {
+              "name": "Chile",
+              "createdAt": "2023-11-22T15:42:40.655Z",
+              "updatedAt": "2024-01-07T23:47:58.476Z",
+              "publishedAt": "2023-11-22T15:42:42.314Z",
+              "image": {
+                "data": {
+                  "id": 128,
+                  "attributes": {
+                    "name": "chile.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "chile_86c07a7b38",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.79,
+                    "url": "/uploads/chile_86c07a7b38.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:47:55.957Z",
+                    "updatedAt": "2024-01-07T23:47:55.957Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26887,
+      "attributes": {
+        "diary_hour": "16:00:00",
+        "diary_description": "Brasileirão: Vasco da Gama vs Juventude",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 180,
+              "attributes": {
+                "embed_name": "Premiere BR ",
+                "idioma": "Portugués",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1wcmVtaWVyZTE="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 1,
+            "attributes": {
+              "name": "Brasil",
+              "createdAt": "2023-11-22T14:40:01.140Z",
+              "updatedAt": "2024-01-07T23:56:59.376Z",
+              "publishedAt": "2023-11-22T14:42:50.953Z",
+              "image": {
+                "data": {
+                  "id": 141,
+                  "attributes": {
+                    "name": "brasil.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "brasil_25a533e5f7",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.85,
+                    "url": "/uploads/brasil_25a533e5f7.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:56:57.083Z",
+                    "updatedAt": "2024-01-07T23:56:57.083Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26888,
+      "attributes": {
+        "diary_hour": "16:15:00",
+        "diary_description": "Primera A: Fortaleza CEIF vs Junior",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 616,
+              "attributes": {
+                "embed_name": "Win Sports +",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT13aW5zcG9ydHNwbHVz"
+              }
+            },
+            {
+              "id": 753,
+              "attributes": {
+                "embed_name": "Win Sports + HD",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT13aW5zcG9ydHMy"
+              }
+            },
+            {
+              "id": 1004,
+              "attributes": {
+                "embed_name": "Win Sports + |  opc3",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vd2lucGx1cy5odG1s"
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 17,
+            "attributes": {
+              "name": "Colombia",
+              "createdAt": "2023-11-22T15:49:17.121Z",
+              "updatedAt": "2024-01-07T23:51:34.518Z",
+              "publishedAt": "2023-11-22T15:49:18.322Z",
+              "image": {
+                "data": {
+                  "id": 133,
+                  "attributes": {
+                    "name": "colombia.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "colombia_dcf9cc2637",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.57,
+                    "url": "/uploads/colombia_dcf9cc2637.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:51:32.399Z",
+                    "updatedAt": "2024-01-07T23:51:32.399Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26877,
+      "attributes": {
+        "diary_hour": "15:00:00",
+        "diary_description": "Premier League: Chelsea vs Wolverhampton Wanderers",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 780,
+              "attributes": {
+                "embed_name": "Universo",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT11bml2ZXJzbw=="
+              }
+            },
+            {
+              "id": 832,
+              "attributes": {
+                "embed_name": "Disney+",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kaXNuZXkxMQ=="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 8,
+            "attributes": {
+              "name": "Inglaterra",
+              "createdAt": "2023-11-22T15:34:59.892Z",
+              "updatedAt": "2024-01-07T23:52:57.434Z",
+              "publishedAt": "2023-11-22T15:35:01.179Z",
+              "image": {
+                "data": {
+                  "id": 135,
+                  "attributes": {
+                    "name": "inglaterra.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "inglaterra_823176495f",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.53,
+                    "url": "/uploads/inglaterra_823176495f.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:52:55.261Z",
+                    "updatedAt": "2024-01-07T23:52:55.261Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26866,
+      "attributes": {
+        "diary_hour": "12:30:00",
+        "diary_description": "Premier League: Sunderland vs Arsenal",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 746,
+              "attributes": {
+                "embed_name": "ESPN",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1lc3Bu"
+              }
+            },
+            {
+              "id": 789,
+              "attributes": {
+                "embed_name": "Disney+",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kaXNuZXk1"
+              }
+            },
+            {
+              "id": 780,
+              "attributes": {
+                "embed_name": "Universo",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT11bml2ZXJzbw=="
+              }
+            },
+            {
+              "id": 1200,
+              "attributes": {
+                "embed_name": "ESPN Movil",
+                "idioma": null,
+                "embed_iframe": "/embed/eventos?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vZXNwbi5odG1s"
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 8,
+            "attributes": {
+              "name": "Inglaterra",
+              "createdAt": "2023-11-22T15:34:59.892Z",
+              "updatedAt": "2024-01-07T23:52:57.434Z",
+              "publishedAt": "2023-11-22T15:35:01.179Z",
+              "image": {
+                "data": {
+                  "id": 135,
+                  "attributes": {
+                    "name": "inglaterra.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "inglaterra_823176495f",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.53,
+                    "url": "/uploads/inglaterra_823176495f.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:52:55.261Z",
+                    "updatedAt": "2024-01-07T23:52:55.261Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26879,
+      "attributes": {
+        "diary_hour": "15:00:00",
+        "diary_description": "Liga Profesional: Racing Club vs Defensa y Justicia",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 848,
+              "attributes": {
+                "embed_name": "Disney+",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kaXNuZXkxMw=="
+              }
+            },
+            {
+              "id": 713,
+              "attributes": {
+                "embed_name": "ESPN Premium",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1lc3BucHJlbWl1bQ=="
+              }
+            },
+            {
+              "id": 1213,
+              "attributes": {
+                "embed_name": "ESPN Premium Movil",
+                "idioma": null,
+                "embed_iframe": "/embed/eventos?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vZXNwbi1wcmVtaXVtLmh0bWw="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 3,
+            "attributes": {
+              "name": "Argentina",
+              "createdAt": "2023-11-22T14:52:41.307Z",
+              "updatedAt": "2023-11-22T17:59:52.523Z",
+              "publishedAt": "2023-11-22T14:54:38.957Z",
+              "image": {
+                "data": {
+                  "id": 29,
+                  "attributes": {
+                    "name": "argentina.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 128,
+                    "height": 128,
+                    "formats": null,
+                    "hash": "argentina_2bd748026e",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.92,
+                    "url": "/uploads/argentina_2bd748026e.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2023-11-22T17:59:33.800Z",
+                    "updatedAt": "2023-11-22T17:59:33.800Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26883,
+      "attributes": {
+        "diary_hour": "15:00:00",
+        "diary_description": "Ligue 1: Monaco vs Lens",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 849,
+              "attributes": {
+                "embed_name": "Disney+",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kaXNuZXkxNA=="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 11,
+            "attributes": {
+              "name": "Francia",
+              "createdAt": "2023-11-22T15:36:32.644Z",
+              "updatedAt": "2024-01-07T23:54:10.948Z",
+              "publishedAt": "2023-11-22T15:36:34.086Z",
+              "image": {
+                "data": {
+                  "id": 137,
+                  "attributes": {
+                    "name": "francia.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "francia_e9d1a8ab33",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.58,
+                    "url": "/uploads/francia_e9d1a8ab33.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:54:08.582Z",
+                    "updatedAt": "2024-01-07T23:54:08.582Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26871,
+      "attributes": {
+        "diary_hour": "13:00:00",
+        "diary_description": "Ligue 1: Le Havre vs Nantes",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 862,
+              "attributes": {
+                "embed_name": "ESPN4",
+                "idioma": "español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1lc3BuNA=="
+              }
+            },
+            {
+              "id": 816,
+              "attributes": {
+                "embed_name": "Disney+",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kaXNuZXk3"
+              }
+            },
+            {
+              "id": 1207,
+              "attributes": {
+                "embed_name": "ESPN4 Movil",
+                "idioma": null,
+                "embed_iframe": "/embed/eventos?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vZXNwbjQuaHRtbA=="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 11,
+            "attributes": {
+              "name": "Francia",
+              "createdAt": "2023-11-22T15:36:32.644Z",
+              "updatedAt": "2024-01-07T23:54:10.948Z",
+              "publishedAt": "2023-11-22T15:36:34.086Z",
+              "image": {
+                "data": {
+                  "id": 137,
+                  "attributes": {
+                    "name": "francia.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "francia_e9d1a8ab33",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.58,
+                    "url": "/uploads/francia_e9d1a8ab33.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:54:08.582Z",
+                    "updatedAt": "2024-01-07T23:54:08.582Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26889,
+      "attributes": {
+        "diary_hour": "16:30:00",
+        "diary_description": "Brasileirão: Internacional vs Bahia",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 264,
+              "attributes": {
+                "embed_name": "Premiere 3 BR ",
+                "idioma": "Portugués",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1wcmVtaWVyZTM="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 1,
+            "attributes": {
+              "name": "Brasil",
+              "createdAt": "2023-11-22T14:40:01.140Z",
+              "updatedAt": "2024-01-07T23:56:59.376Z",
+              "publishedAt": "2023-11-22T14:42:50.953Z",
+              "image": {
+                "data": {
+                  "id": 141,
+                  "attributes": {
+                    "name": "brasil.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "brasil_25a533e5f7",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.85,
+                    "url": "/uploads/brasil_25a533e5f7.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:56:57.083Z",
+                    "updatedAt": "2024-01-07T23:56:57.083Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26891,
+      "attributes": {
+        "diary_hour": "18:00:00",
+        "diary_description": "Liga MX: Guadalajara vs Monterrey",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 384,
+              "attributes": {
+                "embed_name": "Telemundo",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT10ZWxlbXVuZG8="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 5,
+            "attributes": {
+              "name": "México",
+              "createdAt": "2023-11-22T15:15:54.001Z",
+              "updatedAt": "2024-01-07T23:56:44.462Z",
+              "publishedAt": "2023-11-22T15:16:00.799Z",
+              "image": {
+                "data": {
+                  "id": 140,
+                  "attributes": {
+                    "name": "bandera.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "bandera_fbc29cb609",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 1.04,
+                    "url": "/uploads/bandera_fbc29cb609.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:56:40.086Z",
+                    "updatedAt": "2024-01-07T23:56:40.086Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26893,
+      "attributes": {
+        "diary_hour": "18:20:00",
+        "diary_description": "Primera A: Atlético Nacional vs Rionegro Águilas",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 616,
+              "attributes": {
+                "embed_name": "Win Sports +",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT13aW5zcG9ydHNwbHVz"
+              }
+            },
+            {
+              "id": 753,
+              "attributes": {
+                "embed_name": "Win Sports + HD",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT13aW5zcG9ydHMy"
+              }
+            },
+            {
+              "id": 1004,
+              "attributes": {
+                "embed_name": "Win Sports + |  opc3",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vd2lucGx1cy5odG1s"
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 17,
+            "attributes": {
+              "name": "Colombia",
+              "createdAt": "2023-11-22T15:49:17.121Z",
+              "updatedAt": "2024-01-07T23:51:34.518Z",
+              "publishedAt": "2023-11-22T15:49:18.322Z",
+              "image": {
+                "data": {
+                  "id": 133,
+                  "attributes": {
+                    "name": "colombia.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "colombia_dcf9cc2637",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.57,
+                    "url": "/uploads/colombia_dcf9cc2637.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:51:32.399Z",
+                    "updatedAt": "2024-01-07T23:51:32.399Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26894,
+      "attributes": {
+        "diary_hour": "18:30:00",
+        "diary_description": "Primera División: O'Higgins vs Ñublense",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 424,
+              "attributes": {
+                "embed_name": "TNT Sports Premium CL",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT10bnRzcG9ydHNjaGlsZQ=="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 12,
+            "attributes": {
+              "name": "Chile",
+              "createdAt": "2023-11-22T15:42:40.655Z",
+              "updatedAt": "2024-01-07T23:47:58.476Z",
+              "publishedAt": "2023-11-22T15:42:42.314Z",
+              "image": {
+                "data": {
+                  "id": 128,
+                  "attributes": {
+                    "name": "chile.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "chile_86c07a7b38",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.79,
+                    "url": "/uploads/chile_86c07a7b38.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:47:55.957Z",
+                    "updatedAt": "2024-01-07T23:47:55.957Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26890,
+      "attributes": {
+        "diary_hour": "17:15:00",
+        "diary_description": "Liga Profesional: Wanderers vs River Plate",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 850,
+              "attributes": {
+                "embed_name": "Disney+",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kaXNuZXkxNQ=="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 3,
+            "attributes": {
+              "name": "Argentina",
+              "createdAt": "2023-11-22T14:52:41.307Z",
+              "updatedAt": "2023-11-22T17:59:52.523Z",
+              "publishedAt": "2023-11-22T14:54:38.957Z",
+              "image": {
+                "data": {
+                  "id": 29,
+                  "attributes": {
+                    "name": "argentina.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 128,
+                    "height": 128,
+                    "formats": null,
+                    "hash": "argentina_2bd748026e",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.92,
+                    "url": "/uploads/argentina_2bd748026e.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2023-11-22T17:59:33.800Z",
+                    "updatedAt": "2023-11-22T17:59:33.800Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26892,
+      "attributes": {
+        "diary_hour": "18:00:00",
+        "diary_description": "Liga MX: Tigres UANL vs Atlético San Luis",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 774,
+              "attributes": {
+                "embed_name": "FOX Deportes",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1mb3hkZXBvcnRlcw=="
+              }
+            },
+            {
+              "id": 780,
+              "attributes": {
+                "embed_name": "Universo",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT11bml2ZXJzbw=="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 5,
+            "attributes": {
+              "name": "México",
+              "createdAt": "2023-11-22T15:15:54.001Z",
+              "updatedAt": "2024-01-07T23:56:44.462Z",
+              "publishedAt": "2023-11-22T15:16:00.799Z",
+              "image": {
+                "data": {
+                  "id": 140,
+                  "attributes": {
+                    "name": "bandera.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "bandera_fbc29cb609",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 1.04,
+                    "url": "/uploads/bandera_fbc29cb609.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:56:40.086Z",
+                    "updatedAt": "2024-01-07T23:56:40.086Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26896,
+      "attributes": {
+        "diary_hour": "19:00:00",
+        "diary_description": "Serie A: LDU Quito vs Libertad",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 743,
+              "attributes": {
+                "embed_name": "ECDF LigaPro",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1lY2RmX2xpZ2Fwcm8="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 13,
+            "attributes": {
+              "name": "Ecuador",
+              "createdAt": "2023-11-22T15:42:56.252Z",
+              "updatedAt": "2024-01-07T23:48:11.367Z",
+              "publishedAt": "2023-11-22T15:42:57.903Z",
+              "image": {
+                "data": {
+                  "id": 129,
+                  "attributes": {
+                    "name": "ecuador.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "ecuador_6b5e87e044",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.91,
+                    "url": "/uploads/ecuador_6b5e87e044.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:48:09.254Z",
+                    "updatedAt": "2024-01-07T23:48:09.254Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26897,
+      "attributes": {
+        "diary_hour": "19:00:00",
+        "diary_description": "Segunda Division: Tacuarembó vs Atenas",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 851,
+              "attributes": {
+                "embed_name": "Disney+",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kaXNuZXkxNg=="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 16,
+            "attributes": {
+              "name": "Uruguay",
+              "createdAt": "2023-11-22T15:49:02.025Z",
+              "updatedAt": "2024-01-07T23:51:20.902Z",
+              "publishedAt": "2023-11-22T15:49:03.589Z",
+              "image": {
+                "data": {
+                  "id": 132,
+                  "attributes": {
+                    "name": "uruguay.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "uruguay_e2b9597af8",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.8,
+                    "url": "/uploads/uruguay_e2b9597af8.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:51:18.898Z",
+                    "updatedAt": "2024-01-07T23:51:18.898Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26898,
+      "attributes": {
+        "diary_hour": "19:00:00",
+        "diary_description": "UFC: UFC | Gabriel Bonfim vs. Randy Brown | ESPN KO",
+        "date_diary": "2025-11-08",
+        "deportes": "MMA(UFC)",
+        "embeds": {
+          "data": [
+            {
+              "id": 855,
+              "attributes": {
+                "embed_name": "Disney+",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kaXNuZXkyMA=="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 47,
+            "attributes": {
+              "name": "UFC",
+              "createdAt": "2024-01-14T03:19:23.150Z",
+              "updatedAt": "2024-01-14T03:19:25.127Z",
+              "publishedAt": "2024-01-14T03:19:25.124Z",
+              "image": {
+                "data": {
+                  "id": 175,
+                  "attributes": {
+                    "name": "ufc.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "ufc_00fbf49648",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.98,
+                    "url": "/uploads/ufc_00fbf49648.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-14T03:19:20.213Z",
+                    "updatedAt": "2025-11-01T17:26:26.096Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26899,
+      "attributes": {
+        "diary_hour": "19:30:00",
+        "diary_description": "Liga Profesional: Unión Santa Fe vs Barracas Central",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 523,
+              "attributes": {
+                "embed_name": "TNT Sports",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT10bnRzcG9ydHM="
+              }
+            },
+            {
+              "id": 1212,
+              "attributes": {
+                "embed_name": "TNT Sports Movil",
+                "idioma": null,
+                "embed_iframe": "/embed/eventos?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vdG50Lmh0bWw="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 3,
+            "attributes": {
+              "name": "Argentina",
+              "createdAt": "2023-11-22T14:52:41.307Z",
+              "updatedAt": "2023-11-22T17:59:52.523Z",
+              "publishedAt": "2023-11-22T14:54:38.957Z",
+              "image": {
+                "data": {
+                  "id": 29,
+                  "attributes": {
+                    "name": "argentina.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 128,
+                    "height": 128,
+                    "formats": null,
+                    "hash": "argentina_2bd748026e",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.92,
+                    "url": "/uploads/argentina_2bd748026e.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2023-11-22T17:59:33.800Z",
+                    "updatedAt": "2023-11-22T17:59:33.800Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26900,
+      "attributes": {
+        "diary_hour": "19:30:00",
+        "diary_description": "Liga Profesional: San Martín San Juan vs Lanús",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 713,
+              "attributes": {
+                "embed_name": "ESPN Premium",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1lc3BucHJlbWl1bQ=="
+              }
+            },
+            {
+              "id": 1213,
+              "attributes": {
+                "embed_name": "ESPN Premium Movil",
+                "idioma": null,
+                "embed_iframe": "/embed/eventos?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vZXNwbi1wcmVtaXVtLmh0bWw="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 3,
+            "attributes": {
+              "name": "Argentina",
+              "createdAt": "2023-11-22T14:52:41.307Z",
+              "updatedAt": "2023-11-22T17:59:52.523Z",
+              "publishedAt": "2023-11-22T14:54:38.957Z",
+              "image": {
+                "data": {
+                  "id": 29,
+                  "attributes": {
+                    "name": "argentina.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 128,
+                    "height": 128,
+                    "formats": null,
+                    "hash": "argentina_2bd748026e",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.92,
+                    "url": "/uploads/argentina_2bd748026e.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2023-11-22T17:59:33.800Z",
+                    "updatedAt": "2023-11-22T17:59:33.800Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26901,
+      "attributes": {
+        "diary_hour": "20:00:00",
+        "diary_description": "League Soccer: Inter Miami vs Nashville SC",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 667,
+              "attributes": {
+                "embed_name": "MLS01",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1tbHMxZXM="
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 19,
+            "attributes": {
+              "name": "Estados Unidos",
+              "createdAt": "2023-11-22T18:04:29.927Z",
+              "updatedAt": "2024-01-07T23:46:22.789Z",
+              "publishedAt": "2023-11-22T18:04:31.112Z",
+              "image": {
+                "data": {
+                  "id": 126,
+                  "attributes": {
+                    "name": "estados-unidos-de-america.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "estados_unidos_de_america_b400fc18c4",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 1.29,
+                    "url": "/uploads/estados_unidos_de_america_b400fc18c4.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:46:20.342Z",
+                    "updatedAt": "2024-01-07T23:46:20.342Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26902,
+      "attributes": {
+        "diary_hour": "20:00:00",
+        "diary_description": "Liga MX: Toluca vs América",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 206,
+              "attributes": {
+                "embed_name": "TUDN USA",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT10dWRu"
+              }
+            },
+            {
+              "id": 737,
+              "attributes": {
+                "embed_name": "Univisión",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT11bml2aXNpb24="
+              }
+            },
+            {
+              "id": 1202,
+              "attributes": {
+                "embed_name": "TUDN USA Movil",
+                "idioma": null,
+                "embed_iframe": "/embed/eventos?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vdHVkbnVzYS5odG1s"
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 5,
+            "attributes": {
+              "name": "México",
+              "createdAt": "2023-11-22T15:15:54.001Z",
+              "updatedAt": "2024-01-07T23:56:44.462Z",
+              "publishedAt": "2023-11-22T15:16:00.799Z",
+              "image": {
+                "data": {
+                  "id": 140,
+                  "attributes": {
+                    "name": "bandera.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "bandera_fbc29cb609",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 1.04,
+                    "url": "/uploads/bandera_fbc29cb609.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:56:40.086Z",
+                    "updatedAt": "2024-01-07T23:56:40.086Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26903,
+      "attributes": {
+        "diary_hour": "20:30:00",
+        "diary_description": "Primera A: Atlético Bucaramanga vs La Equidad",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 616,
+              "attributes": {
+                "embed_name": "Win Sports +",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT13aW5zcG9ydHNwbHVz"
+              }
+            },
+            {
+              "id": 753,
+              "attributes": {
+                "embed_name": "Win Sports + HD",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT13aW5zcG9ydHMy"
+              }
+            },
+            {
+              "id": 1004,
+              "attributes": {
+                "embed_name": "Win Sports + |  opc3",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vd2lucGx1cy5odG1s"
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 17,
+            "attributes": {
+              "name": "Colombia",
+              "createdAt": "2023-11-22T15:49:17.121Z",
+              "updatedAt": "2024-01-07T23:51:34.518Z",
+              "publishedAt": "2023-11-22T15:49:18.322Z",
+              "image": {
+                "data": {
+                  "id": 133,
+                  "attributes": {
+                    "name": "colombia.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "colombia_dcf9cc2637",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 0.57,
+                    "url": "/uploads/colombia_dcf9cc2637.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:51:32.399Z",
+                    "updatedAt": "2024-01-07T23:51:32.399Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 26904,
+      "attributes": {
+        "diary_hour": "22:00:00",
+        "diary_description": "Liga MX: Cruz Azul vs Pumas UNAM",
+        "date_diary": "2025-11-08",
+        "deportes": "Futbol",
+        "embeds": {
+          "data": [
+            {
+              "id": 206,
+              "attributes": {
+                "embed_name": "TUDN USA",
+                "idioma": "Español",
+                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9sYTE0aGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT10dWRu"
+              }
+            },
+            {
+              "id": 1202,
+              "attributes": {
+                "embed_name": "TUDN USA Movil",
+                "idioma": null,
+                "embed_iframe": "/embed/eventos?r=aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vc3cuaHRtbD9nZXQ9aHR0cHM6Ly9yb2phZGlyZWN0YXR2ZS5jb20vcmVwcm8vdHVkbnVzYS5odG1s"
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "id": 5,
+            "attributes": {
+              "name": "México",
+              "createdAt": "2023-11-22T15:15:54.001Z",
+              "updatedAt": "2024-01-07T23:56:44.462Z",
+              "publishedAt": "2023-11-22T15:16:00.799Z",
+              "image": {
+                "data": {
+                  "id": 140,
+                  "attributes": {
+                    "name": "bandera.png",
+                    "alternativeText": null,
+                    "caption": null,
+                    "width": 64,
+                    "height": 64,
+                    "formats": null,
+                    "hash": "bandera_fbc29cb609",
+                    "ext": ".png",
+                    "mime": "image/png",
+                    "size": 1.04,
+                    "url": "/uploads/bandera_fbc29cb609.png",
+                    "previewUrl": null,
+                    "provider": "local",
+                    "provider_metadata": null,
+                    "createdAt": "2024-01-07T23:56:40.086Z",
+                    "updatedAt": "2024-01-07T23:56:40.086Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
