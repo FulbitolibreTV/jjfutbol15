@@ -56,6 +56,15 @@
       text-align: center;
       font-weight: bold;
     }
+    .pais {
+      display: inline-block;
+      width: 18px;
+      height: 12px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
   </style>
 </head>
 <body>
@@ -69,37 +78,50 @@
       canales.style.display = canales.style.display === 'block' ? 'none' : 'block';
     }
 
-    // Cargar la agenda desde TU JSON
-    fetch('https://golazoplay.com/agenda.json')
+    // Cargar tu agenda local
+    fetch('/agenda.json')
       .then(response => {
         if (!response.ok) throw new Error('No se pudo cargar la agenda');
         return response.json();
       })
       .then(data => {
-        const partidos = data.partidos || [];
+        const hoy = '2025-11-08'; // ⬅️ TU FECHA DE HOY (puedes cambiarla)
+        // Filtrar partidos de hoy
+        const partidosHoy = data.data.filter(item => item.attributes.date_diary === hoy);
         const contenedor = document.getElementById('agenda');
 
-        if (partidos.length === 0) {
-          contenedor.innerHTML = '<p>No hay partidos programados.</p>';
+        if (partidosHoy.length === 0) {
+          contenedor.innerHTML = '<p>No hay partidos programados para hoy.</p>';
           return;
         }
 
         let html = '';
-        partidos.forEach((p, index) => {
-          // Generar botones con tus enlaces e idiomas
+        partidosHoy.forEach((item, index) => {
+          const attr = item.attributes;
+          const hora = attr.diary_hour.substring(0, 5); // "12:30"
+          const descripcion = attr.diary_description;
+          const pais = attr.country?.data?.attributes;
+          const bandera = pais ? `/uploads/${pais.image.data.attributes.name}` : '';
+
+          // Procesar canales
           let botones = '';
-          if (p.canales && Array.isArray(p.canales)) {
-            p.canales.forEach(canal => {
-              botones += `<a href="${canal.url}" class="btn" target="_blank">${canal.idioma}</a>`;
+          if (attr.embeds?.data?.length > 0) {
+            attr.embeds.data.forEach(embed => {
+              const e = embed.attributes;
+              const idioma = e.idioma || 'Sin idioma';
+              // URL base: tu dominio + iframe
+              const url = `https://jjfutbol15.vercel.app${e.embed_iframe}`;
+              botones += `<a href="${url}" class="btn" target="_blank">${idioma}</a>`;
             });
           } else {
-            botones = `<a href="https://sportzonline.live" class="btn" target="_blank">Ver en mi web</a>`;
+            botones = '<em>No hay canales disponibles</em>';
           }
 
           html += `
             <div class="partido" onclick="toggleCanales(${index})">
-              <strong>${p.hora}</strong> — ${p.local} vs ${p.visitante}<br>
-              <small>🏆 ${p.competicion}</small>
+              <strong>${hora}</strong> — 
+              ${bandera ? `<span class="pais" style="background-image:url('${bandera}')"></span>` : ''}
+              ${descripcion}
               <div id="canales-${index}" class="canales">
                 ${botones}
               </div>
