@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>⚽ Partidos de Hoy</title>
+  <title>⚽ Agenda Deportiva</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -63,64 +63,43 @@
     <h1>⚽ Partidos de Hoy</h1>
     <div id="agenda">Cargando...</div>
   </div>
-
   <script>
-    // 🌐 Mapa de canales por código de liga — SOLO para Champions League (CL)
-    const mapaCanales = {
-      "CL": [
-        { idioma: "Inglés", url: "https://sportzonline.live/channels/hd/hd5.php" },
-        { idioma: "Español", url: "https://sportzonline.live/channels/hd/hd6.php" },
-        { idioma: "Portugués", url: "https://sportzonline.live/channels/pt/eleven2.php" },
-        { idioma: "Portugués (Brasil)", url: "https://sportzonline.live/channels/bra/br3.php" }
-      ],
-      // Para otras ligas, usa un enlace genérico a tu web
-      "default": [
-        { idioma: "Ver en mi web", url: "https://sportzonline.live" }
-      ]
-    };
-
     function toggleCanales(index) {
       const canales = document.getElementById(`canales-${index}`);
       canales.style.display = canales.style.display === 'block' ? 'none' : 'block';
     }
 
-    fetch('/api/partidos')
+    // 📥 Cargar la agenda directamente desde golazoplay.com
+    fetch('https://golazoplay.com/agenda.json')
       .then(response => {
-        if (!response.ok) throw new Error('Error al cargar partidos');
+        if (!response.ok) throw new Error('No se pudo cargar la agenda');
         return response.json();
       })
       .then(data => {
-        const hoy = new Date().toISOString().split('T')[0];
-        const partidosHoy = data.matches.filter(m => m.utcDate.startsWith(hoy));
+        const partidos = data.partidos || [];
         const contenedor = document.getElementById('agenda');
 
-        if (partidosHoy.length === 0) {
-          contenedor.innerHTML = '<p>No hay partidos hoy.</p>';
+        if (partidos.length === 0) {
+          contenedor.innerHTML = '<p>No hay partidos programados.</p>';
           return;
         }
 
         let html = '';
-        partidosHoy.forEach((p, index) => {
-          const hora = new Date(p.utcDate).toLocaleTimeString('es-ES', { 
-            hour: '2-digit', 
-            minute: '2-digit',
-            hour12: false 
-          });
-          const local = p.homeTeam?.name || 'Local';
-          const visitante = p.awayTeam?.name || 'Visitante';
-          const codigoLiga = p.competition?.code || 'default';
-          const nombreLiga = p.competition?.name || 'Competición';
-
-          const canales = mapaCanales[codigoLiga] || mapaCanales["default"];
+        partidos.forEach((p, index) => {
+          // Generar botones con tus enlaces e idiomas
           let botones = '';
-          canales.forEach(canal => {
-            botones += `<a href="${canal.url}" class="btn" target="_blank">${canal.idioma}</a>`;
-          });
+          if (p.canales && Array.isArray(p.canales)) {
+            p.canales.forEach(c => {
+              botones += `<a href="${c.url}" class="btn" target="_blank">${c.idioma}</a>`;
+            });
+          } else {
+            botones = `<a href="https://sportzonline.live" class="btn" target="_blank">Ver en mi web</a>`;
+          }
 
           html += `
             <div class="partido" onclick="toggleCanales(${index})">
-              <strong>${hora}</strong> — ${local} vs ${visitante}<br>
-              <small>🏆 ${nombreLiga}</small>
+              <strong>${p.hora}</strong> — ${p.local} vs ${p.visitante}<br>
+              <small>🏆 ${p.competicion}</small>
               <div id="canales-${index}" class="canales">
                 ${botones}
               </div>
@@ -132,7 +111,7 @@
       })
       .catch(err => {
         document.getElementById('agenda').innerHTML = 
-          `<p class="error">❌ ${err.message}</p>`;
+          `<p class="error">❌ Error: ${err.message}</p>`;
         console.error(err);
       });
   </script>
