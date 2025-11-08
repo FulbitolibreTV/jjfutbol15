@@ -69,7 +69,7 @@
       canales.style.display = canales.style.display === 'block' ? 'none' : 'block';
     }
 
-    // 📥 Cargar la agenda directamente desde golazoplay.com
+    // Carga directamente desde TU JSON
     fetch('https://golazoplay.com/agenda.json')
       .then(response => {
         if (!response.ok) throw new Error('No se pudo cargar la agenda');
@@ -86,11 +86,11 @@
 
         let html = '';
         partidos.forEach((p, index) => {
-          // Generar botones con tus enlaces e idiomas
+          // Si hay canales, generamos botones con idioma
           let botones = '';
           if (p.canales && Array.isArray(p.canales)) {
-            p.canales.forEach(c => {
-              botones += `<a href="${c.url}" class="btn" target="_blank">${c.idioma}</a>`;
+            p.canales.forEach(canal => {
+              botones += `<a href="${canal.url}" class="btn" target="_blank">${canal.idioma}</a>`;
             });
           } else {
             botones = `<a href="https://sportzonline.live" class="btn" target="_blank">Ver en mi web</a>`;
