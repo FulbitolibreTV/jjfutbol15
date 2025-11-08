@@ -69,7 +69,7 @@
       canales.style.display = canales.style.display === 'block' ? 'none' : 'block';
     }
 
-    // Carga directamente desde TU JSON
+    // Cargar la agenda desde TU JSON
     fetch('https://golazoplay.com/agenda.json')
       .then(response => {
         if (!response.ok) throw new Error('No se pudo cargar la agenda');
@@ -86,7 +86,7 @@
 
         let html = '';
         partidos.forEach((p, index) => {
-          // Si hay canales, generamos botones con idioma
+          // Generar botones con tus enlaces e idiomas
           let botones = '';
           if (p.canales && Array.isArray(p.canales)) {
             p.canales.forEach(canal => {
