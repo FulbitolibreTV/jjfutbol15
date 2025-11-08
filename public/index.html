@@ -4,138 +4,190 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>⚽ Agenda Deportiva</title>
+  <!-- Carga Luxon para manejo de zonas horarias -->
+  <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+  <!-- Carga jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f0f2f5;
-      padding: 20px;
+      background: #f5f5f5;
       margin: 0;
+      padding: 15px;
     }
     .container {
       max-width: 800px;
       margin: 0 auto;
       background: white;
-      padding: 25px;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
     }
-    h1 {
+    #agenda-titulo {
       text-align: center;
-      color: #e74c3c;
-    }
-    .partido {
-      padding: 15px;
-      margin: 15px 0;
-      border-left: 4px solid #3498db;
-      background: #fafafa;
-      cursor: pointer;
-      border-radius: 8px;
-    }
-    .partido:hover {
-      background: #f0f7ff;
-    }
-    .canales {
-      margin-top: 12px;
-      display: none;
-    }
-    .btn {
-      display: inline-block;
-      margin: 4px 6px 4px 0;
-      padding: 6px 12px;
+      padding: 16px;
       background: #e74c3c;
       color: white;
+      margin: 0;
+      font-size: 1.4em;
+    }
+    .evento-contenedor {
+      border-bottom: 1px solid #eee;
+    }
+    .evento {
+      display: flex;
+      align-items: center;
+      padding: 14px;
+      cursor: pointer;
+      position: relative;
+    }
+    .hora {
+      width: 60px;
+      font-weight: bold;
+      color: #e74c3c;
+    }
+    .evento-icono {
+      width: 24px;
+      height: 24px;
+      margin: 0 10px;
+      border-radius: 50%;
+    }
+    .info-evento {
+      flex: 1;
+      font-size: 1.05em;
+    }
+    .flecha {
+      color: #999;
+      font-size: 1.5em;
+    }
+    .canales {
+      padding: 0 14px 14px 74px;
+      display: none;
+    }
+    .canal-link {
+      display: block;
+      padding: 6px 0;
+      color: #3498db;
       text-decoration: none;
-      border-radius: 5px;
-      font-size: 0.9em;
-    }
-    .btn:hover {
-      background: #c0392b;
-    }
-    .error {
-      color: red;
-      text-align: center;
       font-weight: bold;
     }
-    .pais {
-      display: inline-block;
-      width: 18px;
-      height: 12px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      margin-right: 6px;
-      vertical-align: middle;
+    .canal-link:hover {
+      color: #e74c3c;
+    }
+    .sin-canales {
+      color: #999;
+      font-style: italic;
+    }
+    .error {
+      text-align: center;
+      padding: 20px;
+      color: red;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>⚽ Partidos de Hoy</h1>
-    <div id="agenda">Cargando...</div>
+    <h1 id="agenda-titulo">Cargando...</h1>
+    <div id="agenda-lista">Cargando...</div>
   </div>
   <script>
-    function toggleCanales(index) {
-      const canales = document.getElementById(`canales-${index}`);
-      canales.style.display = canales.style.display === 'block' ? 'none' : 'block';
-    }
+    $(document).ready(function() {
+      const AGENDA_URL = "https://golazoplay.com/agenda.json";
+      const agendaLista = $('#agenda-lista');
+      const tituloAgenda = $('#agenda-titulo');
 
-    // Cargar tu agenda local
-    fetch('/agenda.json')
-      .then(response => {
-        if (!response.ok) throw new Error('No se pudo cargar la agenda');
-        return response.json();
-      })
-      .then(data => {
-        const hoy = '2025-11-08'; // ⬅️ TU FECHA DE HOY (puedes cambiarla)
-        // Filtrar partidos de hoy
-        const partidosHoy = data.data.filter(item => item.attributes.date_diary === hoy);
-        const contenedor = document.getElementById('agenda');
+      function convertirHora(horaString) {
+        const DateTime = luxon.DateTime;
+        // Extraer solo la parte de la hora (HH:mm:ss)
+        const partes = horaString.split(':');
+        const hora = parseInt(partes[0], 10);
+        const minuto = parseInt(partes[1], 10);
+        // Usar la fecha de hoy en Lima
+        const hoy = new Date();
+        const fechaLima = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate(), hora, minuto);
+        const dt = DateTime.fromJSDate(fechaLima, { zone: "America/Lima" });
+        return dt.toLocal().toFormat("HH:mm");
+      }
 
-        if (partidosHoy.length === 0) {
-          contenedor.innerHTML = '<p>No hay partidos programados para hoy.</p>';
-          return;
-        }
+      async function cargarAgenda() {
+        try {
+          const respuesta = await fetch(AGENDA_URL + "?t=" + new Date().getTime());
+          const json = await respuesta.json();
+          const eventos = json.data;
 
-        let html = '';
-        partidosHoy.forEach((item, index) => {
-          const attr = item.attributes;
-          const hora = attr.diary_hour.substring(0, 5); // "12:30"
-          const descripcion = attr.diary_description;
-          const pais = attr.country?.data?.attributes;
-          const bandera = pais ? `/uploads/${pais.image.data.attributes.name}` : '';
+          agendaLista.empty();
+          const hoy = new Date();
+          tituloAgenda.text('AGENDA - ' + hoy.getDate() + ' DE ' + hoy.toLocaleString('es-ES', { month: 'long' }).toUpperCase() + ' DE ' + hoy.getFullYear());
 
-          // Procesar canales
-          let botones = '';
-          if (attr.embeds?.data?.length > 0) {
-            attr.embeds.data.forEach(embed => {
-              const e = embed.attributes;
-              const idioma = e.idioma || 'Sin idioma';
-              // URL base: tu dominio + iframe
-              const url = `https://jjfutbol15.vercel.app${e.embed_iframe}`;
-              botones += `<a href="${url}" class="btn" target="_blank">${idioma}</a>`;
-            });
-          } else {
-            botones = '<em>No hay canales disponibles</em>';
+          eventos.sort((a, b) => a.attributes.diary_hour.localeCompare(b.attributes.diary_hour));
+          
+          if (eventos.length === 0) {
+            agendaLista.html('<p class="error">No hay eventos programados para hoy.</p>');
+            return;
           }
 
-          html += `
-            <div class="partido" onclick="toggleCanales(${index})">
-              <strong>${hora}</strong> — 
-              ${bandera ? `<span class="pais" style="background-image:url('${bandera}')"></span>` : ''}
-              ${descripcion}
-              <div id="canales-${index}" class="canales">
-                ${botones}
-              </div>
-            </div>
-          `;
-        });
+          eventos.forEach(evento => {
+            const attr = evento.attributes;
+            const horaLocal = convertirHora(attr.diary_hour);
+            const titulo = attr.diary_description;
 
-        contenedor.innerHTML = html;
-      })
-      .catch(err => {
-        document.getElementById('agenda').innerHTML = 
-          `<p class="error">❌ Error: ${err.message}</p>`;
-        console.error(err);
+            let urlIcono = "https://i.imgur.com/Vdef5Rz.png";
+            if (attr.country?.data?.attributes?.image?.data?.attributes?.url) {
+              urlIcono = "https://img.golazoplay.com" + attr.country.data.attributes.image.data.attributes.url;
+            }
+
+            let canalesHtml = '<div class="canales">';
+            if (attr.embeds && attr.embeds.data.length > 0) {
+              attr.embeds.data.forEach(embed => {
+                const nombreCanal = embed.attributes.embed_name;
+                const urlRelativaConParametro = embed.attributes.embed_iframe;
+                try {
+                  const params = new URLSearchParams(urlRelativaConParametro.split('?')[1]);
+                  const urlRealCodificada = params.get("r");
+                  if (urlRealCodificada) {
+                    canalesHtml += `<a href="embed/eventos.html?r=${encodeURIComponent(urlRealCodificada)}" target="_blank" class="canal-link">➤ ${nombreCanal}</a>`;
+                  } else {
+                    canalesHtml += `<span class="sin-canales">${nombreCanal} (No disponible)</span>`;
+                  }
+                } catch (e) {
+                  console.error("Error parseando URL de embed:", urlRelativaConParametro);
+                  canalesHtml += `<span class="sin-canales">${nombreCanal} (Error)</span>`;
+                }
+              });
+            } else {
+              canalesHtml += `<span class="sin-canales">Próximamente...</span>`;
+            }
+            canalesHtml += '</div>';
+            
+            const eventoHtml = `
+              <div class="evento-contenedor">
+                <div class="evento">
+                  <div class="hora">${horaLocal}</div>
+                  <img src="${urlIcono}" class="evento-icono" alt="">
+                  <div class="info-evento">${titulo}</div>
+                  <div class="flecha">›</div>
+                </div>
+                ${canalesHtml}
+              </div>
+            `;
+            agendaLista.append(eventoHtml);
+          });
+
+        } catch (error) {
+          console.error("Error al cargar la agenda:", error);
+          agendaLista.html('<p class="error">No se pudo cargar la agenda. (Posible error de CORS)</p>');
+        }
+      }
+
+      agendaLista.on('click', '.evento', function() {
+        const subMenu = $(this).siblings('.canales');
+        $('.canales').not(subMenu).slideUp('fast');
+        subMenu.slideToggle('fast');
       });
+
+      cargarAgenda();
+      setInterval(cargarAgenda, 60000);
+    });
   </script>
 </body>
 </html>
