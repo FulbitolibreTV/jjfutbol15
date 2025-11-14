@@ -82,10 +82,10 @@
     <ul id="menu"></ul>
   </div>
   <script>
-    // ✅ CONFIGURACIÓN EXACTA SEGÚN TUS ÚLTIMAS INSTRUCCIONES
+    // ✅ TU CONFIGURACIÓN FINAL
     const AGENDA_URL = "https://a.ftvhd.com/diaries.json";                     // Tu JSON local
-    const IMG_BASE   = "https://img.futbolonlinehd.com";   // Banderas externas (como en tu código original)
-    const SITE_BASE  = "https://jjfutbol.lat/"; // Tus propios enlaces
+    const IMG_BASE   = "https://img.futbolonlinehd.com";   // Banderas externas
+    const SITE_BASE  = "https://jjfutbol.lat/"; // Tu dominio de canales
 
     document.addEventListener("DOMContentLoaded", function () {
       obtenerAgenda();
@@ -102,25 +102,19 @@
       setInterval(upgrade, 60000);
     });
 
-    function upgrade() {
-      const menu  = document.getElementById("menu");
-      const title = document.getElementById("title-agenda");
-      refrescarAgenda(menu, title);
-    }
+    // (Las funciones convertToUserTimeZone, obtenerAgenda, renderAgenda... se mantienen igual)
 
     function convertToUserTimeZone(utcHour) {
       const DateTime = luxon.DateTime;
       const utcDate  = DateTime.fromISO(utcHour, { zone: "America/Lima" });
       return utcDate.toLocal().toFormat("HH:mm");
     }
-
     function formatLocalISODateToEs(dateStr) {
       const [y, m, d] = (dateStr || "").split("-").map(Number);
       if (!y || !m || !d) return null;
       const dt = new Date(y, m - 1, d);
       return dt.toLocaleDateString("es-ES", { year: "numeric", month: "long", day: "numeric" });
     }
-
     function extractDiaryDate(result) {
       const arr = (result && result.data) ? result.data : [];
       const dates = arr.map(it => it?.attributes?.date_diary).filter(Boolean);
@@ -133,13 +127,11 @@
       }
       return best;
     }
-
     function setAgendaTitle(result, el) {
       const dd   = extractDiaryDate(result);
       const text = dd ? formatLocalISODateToEs(dd) : new Date().toLocaleDateString("es-ES");
       if (el) el.innerHTML = "Agenda - " + text;
     }
-
     async function refrescarAgenda(menu, title) {
       try {
         const r = await fetch(AGENDA_URL, { cache: "no-store" });
@@ -147,7 +139,6 @@
         renderAgenda(result, menu, title);
       } catch (e) { console.error("Error al refrescar agenda:", e); }
     }
-
     async function obtenerAgenda() {
       const menu  = document.getElementById("menu");
       const title = document.getElementById("title-agenda");
@@ -157,7 +148,6 @@
         renderAgenda(result, menu, title);
       } catch (e) { console.error("❌ Error al cargar la agenda:", e); }
     }
-
     function renderAgenda(result, menu, title) {
       if (!result || !result.data) {
         if (title) title.innerHTML = "Agenda - Sin datos";
@@ -189,7 +179,6 @@
                 embeds.map(embed => {
                   if (!embed || !embed.attributes) return "";
                   let urlComplete = (embed.attributes.embed_iframe || "").trim();
-                  // ✅ Ajuste clave: ahora apunta a TU dominio
                   if (urlComplete.startsWith("/")) {
                     urlComplete = SITE_BASE + urlComplete;
                   }
