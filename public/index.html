@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Agenda Deportiva</title>
-  <!-- jQuery y Luxon desde CDN -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
   <style>
@@ -82,12 +81,11 @@
     <h1 id="title-agenda">Agenda - Cargando...</h1>
     <ul id="menu"></ul>
   </div>
-
   <script>
-    // ✅ TU CONFIGURACIÓN EXACTA, PERO CON TU JSON LOCAL
-    const AGENDA_URL = "https://a.ftvhd.com/diaries.json";        // 👈 Ya no usa a.ftvhd.com
-    const IMG_BASE   = "https://img.futbolonlinehd.com";
-    const SITE_BASE = "https://jjfutbol.lat/"; // 👈 Tus enlaces
+    // ✅ CONFIGURACIÓN EXACTA SEGÚN TUS ÚLTIMAS INSTRUCCIONES
+    const AGENDA_URL = "/agenda.json";                     // Tu JSON local
+    const IMG_BASE   = "https://img.futbolonlinehd.com";   // Banderas externas (como en tu código original)
+    const SITE_BASE  = "https://canales-de-eventos.vercel.app"; // Tus propios enlaces
 
     document.addEventListener("DOMContentLoaded", function () {
       obtenerAgenda();
@@ -166,24 +164,19 @@
         if (menu)  menu.innerHTML  = "";
         return;
       }
-
       setAgendaTitle(result, title);
-
       const data = (result.data || []).slice().sort((a, b) => {
         const A = (a?.attributes?.date_diary || "") + (a?.attributes?.diary_hour || "");
         const B = (b?.attributes?.date_diary || "") + (b?.attributes?.diary_hour || "");
         return A.localeCompare(B);
       });
-
       let html = "";
       data.forEach((value) => {
         const attr   = value.attributes || {};
         const embeds = (attr.embeds && attr.embeds.data) || [];
-
         let imageUrl = `${IMG_BASE}/uploads/sin_imagen_d36205f0e8.png`;
         const flag   = attr.country?.data?.attributes?.image?.data?.attributes?.url;
         if (flag) imageUrl = `${IMG_BASE}${flag}`;
-
         html += `
           <li class="toggle-submenu">
             <div>
@@ -196,6 +189,7 @@
                 embeds.map(embed => {
                   if (!embed || !embed.attributes) return "";
                   let urlComplete = (embed.attributes.embed_iframe || "").trim();
+                  // ✅ Ajuste clave: ahora apunta a TU dominio
                   if (urlComplete.startsWith("/")) {
                     urlComplete = SITE_BASE + urlComplete;
                   }
@@ -213,7 +207,6 @@
             </ul>
           </li>`;
       });
-
       if (menu) menu.innerHTML = html;
     }
   </script>
