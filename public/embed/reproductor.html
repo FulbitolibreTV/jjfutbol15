@@ -363,14 +363,60 @@
     }
 
     // Cargar stream
-    const urlParams = new URLSearchParams(window.location.search);
-    const encodedUrl = urlParams.get('r');
-    const viewerFrame = document.getElementById('viewer');
+   const urlParams = new URLSearchParams(window.location.search);
+const encodedUrl = urlParams.get('r');
+const viewerFrame = document.getElementById('viewer');
 
-    if (encodedUrl) {
-      try {
-        const decodedUrl = atob(decodeURIComponent(encodedUrl));
-        viewerFrame.src = decodedUrl;
+if (encodedUrl) {
+  try {
+    // Decodificar el Base64
+    let decodedUrl;
+    try {
+      decodedUrl = atob(decodeURIComponent(encodedUrl));
+    } catch (e) {
+      throw new Error("No se pudo decodificar el enlace.");
+    }
+
+    // Verificar que sea una URL válida
+    if (!decodedUrl.startsWith("http") && !decodedUrl.startsWith("//")) {
+      throw new Error("URL inválida.");
+    }
+
+    viewerFrame.src = decodedUrl;
+
+    // Insertar mensaje de soporte geográfico
+    const vpnNotice = document.createElement('div');
+    vpnNotice.innerHTML = `
+      <div style="
+        max-width: 850px;
+        margin: 15px auto;
+        padding: 16px;
+        background: rgba(20, 25, 50, 0.75);
+        border-radius: 14px;
+        border-left: 4px solid #D4AF37;
+        font-size: 15px;
+        line-height: 1.6;
+        color: #f0f0f0;
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+      ">
+        <strong>¿La transmisión no carga?</strong><br>
+        Si estás en <strong>España u otro país</strong> y el stream no se reproduce,
+        <strong>prueba usar una VPN</strong> conectándote a <strong>Brasil, México o Estados Unidos</strong>
+        (por ejemplo con <em>TunnelBear</em> u otra VPN confiable).<br>
+        También asegúrate de usar el navegador <strong>Brave</strong> o tener instalado
+        <strong>uBlock Origin</strong> para evitar bloqueos por publicidad externa.<br>
+        <em>Estamos trabajando constantemente para mejorar la estabilidad y calidad de las transmisiones. ¡Gracias por tu apoyo!</em>
+      </div>
+    `;
+    viewerFrame.parentNode.insertAdjacentElement('afterend', vpnNotice);
+
+  } catch (e) {
+    document.body.innerHTML = `<h2 style="color:white;text-align:center;margin-top:50px;font-family:Poppins,sans-serif;">❌ ${e.message}</h2>`;
+  }
+} else {
+  document.body.innerHTML = '<h2 style="color:white;text-align:center;margin-top:50px;font-family:Poppins,sans-serif;">Sin stream disponible.<br>¡Entra al grupo de Telegram para añadir un canal o reportar problemas!</h2>';
+}
 
         // Insertar mensaje de soporte geográfico y recomendaciones
         const vpnNotice = document.createElement('div');
