@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JJFUTBOL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: linear-gradient(135deg, #0A0F2C 0%, #000000 100%);
+      color: white;
+      font-family: 'Open Sans', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 15, 44, 0.92);
+      backdrop-filter: blur(8px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal {
+      background: rgba(15, 20, 40, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 20px;
+      padding: 35px;
+      max-width: 520px;
+      width: 92%;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+    }
+    .modal h2 {
+      color: #D4AF37;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+    .modal p {
+      margin-bottom: 20px;
+      line-height: 1.7;
+      font-size: 15px;
+      color: #f0f0f0;
+    }
+    .modal button {
+      background: linear-gradient(to right, #CC5500, #D4AF37);
+      color: #0A0F2C;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+    }
+    header {
+      text-align: center;
+      padding: 35px 20px 25px;
+    }
+    #logo {
+      height: 65px;
+      margin: 0 auto 18px;
+      filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.5));
+    }
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: linear-gradient(to right, #D4AF37, #FF8C00);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .evento-info {
+      max-width: 850px;
+      margin: 0 auto 25px;
+      text-align: center;
+      padding: 0 20px;
+    }
+    #nombre-evento {
+      font-family: 'Poppins', sans-serif;
+      color: #D4AF37;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    #hora-evento {
+      color: #aaa;
+      font-size: 18px;
+    }
+    .viewer-container {
+      width: 100%;
+      max-width: 850px;
+      margin: 0 auto 35px;
+      padding: 0 20px;
+    }
+    .viewer-container iframe {
+      width: 100%;
+      height: 620px;
+      border: none;
+      border-radius: 18px;
+      display: block;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+    }
+    .links-section {
+      max-width: 850px;
+      margin: 0 auto 40px;
+      padding: 0 25px;
+      text-align: center;
+    }
+    .links-section a {
+      display: inline-block;
+      margin: 8px 10px;
+      padding: 10px 20px;
+      background: rgba(20, 25, 50, 0.7);
+      color: #FF8C00;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 600;
+      border: 1px solid rgba(204, 85, 0, 0.3);
+    }
+    .telegram-cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(to right, #0088cc, #00AA99);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 16px;
+    }
+    @media (max-width: 600px) {
+      .viewer-container iframe { height: 380px; }
+      h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="modal-overlay" id="welcomeModal">
+    <div class="modal">
+      <h2><i class="fas fa-exclamation-circle"></i> Información Importante</h2>
+      <p>Esta página (<strong>JJFUTBOL</strong>) <strong>NO tiene anuncios</strong>.<br>
+      Sin embargo, el reproductor de transmisión (streaming) <strong>puede contener publicidad</strong> debido a fuentes externas.</p>
+      <p>✅ <strong>Recomendamos:</strong><br>
+      Usar el navegador <strong>Brave</strong> o instalar un bloqueador como <strong>uBlock Origin</strong>.</p>
+      <button onclick="closeModal()"><i class="fas fa-check"></i> Aceptar y continuar</button>
+    </div>
+  </div>
+
+  <header>
+    <a href="https://jjfutbol.lat/" target="_blank">
+      <img id="logo" src="https://i.postimg.cc/mg6MVMjw/1762386751.png" alt="JJFUTBOL Logo">
+    </a>
+    <h1>JJFUTBOL</h1>
+  </header>
+
+  <div class="evento-info">
+    <h2 id="nombre-evento">Cargando evento...</h2>
+    <p id="hora-evento">—</p>
+  </div>
+
+  <div class="viewer-container">
+    <iframe id="viewer" src="" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <div class="links-section">
+    <h3>📥 Optimiza tu experiencia</h3>
+    <a href="https://brave.com/" target="_blank">Descargar Brave</a>
+    <a href="https://ublockorigin.com/" target="_blank">Instalar uBlock Origin</a>
+
+    <div class="telegram-cta">
+      <h3>📣 ¡Únete al grupo oficial de JJFUTBOL!</h3>
+      <a href="https://t.me/+EPyKMpHXlv5lMmYx" target="_blank">
+        <i class="fab fa-telegram-plane"></i> Únete al grupo ahora
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function closeModal() {
+      document.getElementById('welcomeModal').style.display = 'none';
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const encodedUrl = urlParams.get('r');
+    const horaEvento = urlParams.get('hora');
+    const nombreEvento = urlParams.get('nombre');
+    const viewerFrame = document.getElementById('viewer');
+
+    // Mostrar nombre y hora
+    if (nombreEvento) {
+      document.getElementById('nombre-evento').textContent = decodeURIComponent(nombreEvento);
+    } else {
+      document.getElementById('nombre-evento').textContent = "Evento en vivo";
+    }
+    if (horaEvento) {
+      document.getElementById('hora-evento').textContent = `Hora: ${decodeURIComponent(horaEvento)} (tu zona horaria)`;
+    }
+
+    // Cargar stream
+    if (encodedUrl) {
+      try {
+        let decodedUrl = atob(decodeURIComponent(encodedUrl));
+
+        // Convertir rutas relativas a URLs absolutas
+        if (decodedUrl.startsWith("/")) {
+          decodedUrl = "https://ftvhd.com" + decodedUrl;
+        }
+
+        // Validar URL
+        if (!decodedUrl.startsWith("http") && !decodedUrl.startsWith("//")) {
+          throw new Error("URL no válida");
+        }
+
+        viewerFrame.src = decodedUrl;
+        setTimeout(() => {
+          document.getElementById('welcomeModal').style.display = 'flex';
+        }, 1000);
+      } catch (e) {
+        document.body.innerHTML = `<h2 style="color:white;text-align:center;margin-top:50px;font-family:Poppins,sans-serif;">❌ Error: ${e.message || 'enlace no válido'}</h2>`;
+        console.error("Error al cargar el stream:", e);
+      }
+    } else {
+      document.body.innerHTML = '<h2 style="color:white;text-align:center;margin-top:50px;font-family:Poppins,sans-serif;">Sin stream disponible.<br>¡Entra al grupo de Telegram para añadir un canal o reportar problemas!</h2>';
+    }
+  </script>
+</body>
+</html>
