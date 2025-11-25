@@ -111,8 +111,9 @@
 
         data.forEach(item => {
           const attr = item.attributes;
-          const hora = convertToUserTimeZone(attr.diary_hour);
-          const nombre = attr.diary_description.trim() || "Evento sin nombre";
+          const horaLima = attr.diary_hour;
+          const horaLocal = convertToUserTimeZone(horaLima);
+          const nombre = (attr.diary_description || "Evento sin nombre").trim();
           const logo = attr.country?.data?.attributes?.image?.data?.attributes?.url
             ? "https://panel.futbollibretvs.pe" + attr.country.data.attributes.image.data.attributes.url
             : "https://panel.futbollibretvs.pe/uploads/sin_imagen_d36205f0e8.png";
@@ -120,7 +121,7 @@
           let html = `
             <li class="evento">
               <div class="fila">
-                <span class="hora-ovalo">${hora}</span>
+                <span class="hora-ovalo">${horaLocal}</span>
                 <img src="${logo}" alt="" style="width:20px;height:20px;border-radius:50%;">
                 <span class="nombre-evento">${nombre}</span>
               </div>
@@ -129,10 +130,18 @@
           if (attr.embeds?.data?.length > 0) {
             attr.embeds.data.forEach(embed => {
               const nombreServ = embed.attributes.embed_name || "Canal";
-              const iframeUrl = embed.attributes.embed_iframe || "";
+              let iframeUrl = embed.attributes.embed_iframe || "";
+
+              // 🔹 Asegurar que sea URL absoluta
+              if (iframeUrl.startsWith("/")) {
+                iframeUrl = "https://ftvhd.com" + iframeUrl;
+              }
+
               const encoded = btoa(iframeUrl);
-              // 🔴 Ruta absoluta para que funcione desde /agenda2/
-              html += `<a href="/embed/reproductor.html?r=${encodeURIComponent(encoded)}" target="_blank" class="nombre-servidor">➤ ${nombreServ}</a>`;
+              const encodedHora = encodeURIComponent(horaLocal);
+              const encodedNombre = encodeURIComponent(nombre);
+
+              html += `<a href="/embed/reproductor.html?r=${encodeURIComponent(encoded)}&hora=${encodedHora}&nombre=${encodedNombre}" target="_blank" class="nombre-servidor">➤ ${nombreServ}</a>`;
             });
           } else {
             html += `<span style="color:#888;">Próximamente...</span>`;
