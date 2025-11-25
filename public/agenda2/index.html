@@ -82,8 +82,16 @@
     });
 
     function convertToUserTimeZone(limaHour) {
-      const dt = luxon.DateTime.fromFormat(limaHour, "HH:mm", { zone: "America/Lima" });
-      return dt.toLocal().toFormat("HH:mm");
+      if (!limaHour || typeof limaHour !== 'string') return "—";
+      try {
+        // Extraer HH:mm si hay segundos o más
+        const cleanHour = limaHour.split(':').slice(0, 2).join(':');
+        const dt = luxon.DateTime.fromFormat(cleanHour, "HH:mm", { zone: "America/Lima" });
+        return dt.toLocal().toFormat("HH:mm");
+      } catch (e) {
+        console.warn("Error en hora:", limaHour, e);
+        return "—";
+      }
     }
 
     function formatDate(dateString) {
@@ -111,7 +119,7 @@
 
         data.forEach(item => {
           const attr = item.attributes;
-          const horaLima = attr.diary_hour;
+          const horaLima = attr.diary_hour || "00:00";
           const horaLocal = convertToUserTimeZone(horaLima);
           const nombre = (attr.diary_description || "Evento sin nombre").trim();
           const logo = attr.country?.data?.attributes?.image?.data?.attributes?.url
@@ -130,11 +138,13 @@
           if (attr.embeds?.data?.length > 0) {
             attr.embeds.data.forEach(embed => {
               const nombreServ = embed.attributes.embed_name || "Canal";
-              let iframeUrl = embed.attributes.embed_iframe || "";
+              let iframeUrl = (embed.attributes.embed_iframe || "").trim();
 
-              // 🔹 Asegurar que sea URL absoluta
-              if (iframeUrl.startsWith("/")) {
-                iframeUrl = "https://ftvhd.com" + iframeUrl;
+              // Convertir rutas relativas en URLs absolutas
+              if (iframeUrl && !iframeUrl.startsWith("http") && !iframeUrl.startsWith("//")) {
+                iframeUrl = iframeUrl.startsWith("/") 
+                  ? "https://ftvhd.com" + iframeUrl 
+                  : "https://ftvhd.com/" + iframeUrl;
               }
 
               const encoded = btoa(iframeUrl);
