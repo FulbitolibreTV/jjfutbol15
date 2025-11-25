@@ -3,167 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Agenda 2 - JJFUTBOL</title>
-  <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
-  <style>
-    body {
-      background: #0f0f15;
-      color: white;
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-    .agenda-titulo {
-      font-size: 1.5em;
-      margin-bottom: 20px;
-      color: #D4AF37;
-    }
-    .evento {
-      list-style: none;
-      border-bottom: 1px solid #222;
-      padding: 14px 0;
-    }
-    .fila {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .hora-ovalo {
-      background: #1e3a8a;
-      color: white;
-      padding: 4px 12px;
-      border-radius: 14px;
-      font-weight: bold;
-      font-size: 0.95em;
-    }
-    .nombre-evento {
-      flex: 1;
-      font-size: 1em;
-    }
-    .servidores {
-      display: none;
-      padding-left: 40px;
-      margin-top: 10px;
-    }
-    .servidores.activo {
-      display: block;
-    }
-    .nombre-servidor {
-      display: block;
-      color: #4ade80;
-      text-decoration: none;
-      margin: 6px 0;
-      font-size: 0.95em;
-    }
-    .nombre-servidor:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <h2 class="agenda-titulo">Cargando agenda...</h2>
-  <ul id="eventos"></ul>
-
-  <script>
-    const AGENDA_URLS = ["https://ftvhd.com/diaries.json"];
-
-    document.addEventListener("DOMContentLoaded", obtenerAgenda);
-    setInterval(obtenerAgenda, 60000);
-
-    document.addEventListener("click", (e) => {
-      const ev = e.target.closest(".evento");
-      if (!ev) return;
-      const servidores = ev.querySelector(".servidores");
-      if (!servidores) return;
-
-      document.querySelectorAll(".servidores").forEach(el => el.classList.remove("activo"));
-      if (!servidores.classList.contains("activo")) {
-        servidores.classList.add("activo");
-      }
-    });
-
-    function convertToUserTimeZone(limaHour) {
-      const dt = luxon.DateTime.fromFormat(limaHour, "HH:mm", { zone: "America/Lima" });
-      return dt.toLocal().toFormat("HH:mm");
-    }
-
-    function formatDate(dateString) {
-      return new Date(dateString).toLocaleDateString("es-ES", {
-        year: "numeric", month: "long", day: "numeric"
-      });
-    }
-
-    async function obtenerAgenda() {
-      const menu = document.getElementById("eventos");
-      const title = document.querySelector(".agenda-titulo");
-
-      try {
-        let data = [];
-        for (const url of AGENDA_URLS) {
-          const res = await fetch(url);
-          const json = await res.json();
-          if (Array.isArray(json.data)) data = data.concat(json.data);
-        }
-
-        menu.innerHTML = "";
-        title.textContent = "Agenda - " + formatDate(new Date().toISOString());
-
-        data.sort((a, b) => a.attributes.diary_hour.localeCompare(b.attributes.diary_hour));
-
-        data.forEach(item => {
-          const attr = item.attributes;
-          const horaLima = attr.diary_hour;
-          const horaLocal = convertToUserTimeZone(horaLima);
-          const nombre = (attr.diary_description || "Evento sin nombre").trim();
-          const logo = attr.country?.data?.attributes?.image?.data?.attributes?.url
-            ? "https://panel.futbollibretvs.pe" + attr.country.data.attributes.image.data.attributes.url
-            : "https://panel.futbollibretvs.pe/uploads/sin_imagen_d36205f0e8.png";
-
-          let html = `
-            <li class="evento">
-              <div class="fila">
-                <span class="hora-ovalo">${horaLocal}</span>
-                <img src="${logo}" alt="" style="width:20px;height:20px;border-radius:50%;">
-                <span class="nombre-evento">${nombre}</span>
-              </div>
-              <div class="servidores">`;
-
-          if (attr.embeds?.data?.length > 0) {
-            attr.embeds.data.forEach(embed => {
-              const nombreServ = embed.attributes.embed_name || "Canal";
-              let iframeUrl = embed.attributes.embed_iframe || "";
-
-              // 🔹 Asegurar que sea URL absoluta
-              if (iframeUrl.startsWith("/")) {
-                iframeUrl = "https://ftvhd.com" + iframeUrl;
-              }
-
-              const encoded = btoa(iframeUrl);
-              const encodedHora = encodeURIComponent(horaLocal);
-              const encodedNombre = encodeURIComponent(nombre);
-
-              html += `<a href="/embed/reproductor.html?r=${encodeURIComponent(encoded)}&hora=${encodedHora}&nombre=${encodedNombre}" target="_blank" class="nombre-servidor">➤ ${nombreServ}</a>`;
-            });
-          } else {
-            html += `<span style="color:#888;">Próximamente...</span>`;
-          }
-
-          html += `</div></li>`;
-          menu.innerHTML += html;
-        });
-      } catch (e) {
-        menu.innerHTML = `<li style="color:red;padding:20px;">⚠️ No se pudo cargar la agenda.</li>`;
-        console.error(e);
-      }
-    }
-  </script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>JJFUTBOL</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -309,7 +148,6 @@
 </head>
 <body>
 
-  <!-- Modal de bienvenida -->
   <div class="modal-overlay" id="welcomeModal">
     <div class="modal">
       <h2><i class="fas fa-exclamation-circle"></i> Información Importante</h2>
@@ -328,18 +166,15 @@
     <h1>JJFUTBOL</h1>
   </header>
 
-  <!-- Información del evento -->
   <div class="evento-info">
     <h2 id="nombre-evento">Cargando evento...</h2>
-    <p id="hora-evento">——</p>
+    <p id="hora-evento">—</p>
   </div>
 
-  <!-- Reproductor -->
   <div class="viewer-container">
     <iframe id="viewer" src="" frameborder="0" allowfullscreen></iframe>
   </div>
 
-  <!-- Enlaces útiles -->
   <div class="links-section">
     <h3>📥 Optimiza tu experiencia</h3>
     <a href="https://brave.com/" target="_blank">Descargar Brave</a>
@@ -367,6 +202,8 @@
     // Mostrar nombre y hora
     if (nombreEvento) {
       document.getElementById('nombre-evento').textContent = decodeURIComponent(nombreEvento);
+    } else {
+      document.getElementById('nombre-evento').textContent = "Evento en vivo";
     }
     if (horaEvento) {
       document.getElementById('hora-evento').textContent = `Hora: ${decodeURIComponent(horaEvento)} (tu zona horaria)`;
@@ -375,16 +212,25 @@
     // Cargar stream
     if (encodedUrl) {
       try {
-        const decodedUrl = atob(decodeURIComponent(encodedUrl));
-        if (!decodedUrl.startsWith('http') && !decodedUrl.startsWith('//')) {
-          throw new Error('URL no válida');
+        let decodedUrl = atob(decodeURIComponent(encodedUrl));
+
+        // Convertir rutas relativas a URLs absolutas
+        if (decodedUrl.startsWith("/")) {
+          decodedUrl = "https://ftvhd.com" + decodedUrl;
         }
+
+        // Validar URL
+        if (!decodedUrl.startsWith("http") && !decodedUrl.startsWith("//")) {
+          throw new Error("URL no válida");
+        }
+
         viewerFrame.src = decodedUrl;
         setTimeout(() => {
           document.getElementById('welcomeModal').style.display = 'flex';
         }, 1000);
       } catch (e) {
-        document.body.innerHTML = `<h2 style="color:white;text-align:center;margin-top:50px;font-family:Poppins,sans-serif;">❌ Error: ${e.message}</h2>`;
+        document.body.innerHTML = `<h2 style="color:white;text-align:center;margin-top:50px;font-family:Poppins,sans-serif;">❌ Error: ${e.message || 'enlace no válido'}</h2>`;
+        console.error("Error al cargar el stream:", e);
       }
     } else {
       document.body.innerHTML = '<h2 style="color:white;text-align:center;margin-top:50px;font-family:Poppins,sans-serif;">Sin stream disponible.<br>¡Entra al grupo de Telegram para añadir un canal o reportar problemas!</h2>';
@@ -392,4 +238,3 @@
   </script>
 </body>
 </html>
-
