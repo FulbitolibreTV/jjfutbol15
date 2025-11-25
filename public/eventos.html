@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agenda - JJFUTBOL</title>
+  <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; background: #0f0f15; color: white; padding: 20px; }
+    .fila { display: flex; align-items: center; gap: 10px; margin: 12px 0; }
+    .hora-ovalo {
+      background: #1e3a8a; color: white; padding: 4px 10px;
+      border-radius: 12px; font-weight: bold;
+    }
+    .nombre-evento { flex: 1; }
+    .servidores { display: none; padding-left: 32px; margin-top: 8px; }
+    .servidores.activo { display: block; }
+    .nombre-servidor {
+      display: block; color: #4ade80; text-decoration: none; margin: 4px 0;
+    }
+    .evento { border-bottom: 1px solid #222; padding: 12px 0; }
+  </style>
+</head>
+<body>
+  <h2 class="agenda-titulo">Cargando agenda...</h2>
+  <ul id="eventos"></ul>
+
+  <script>
+    const AGENDA_URLS = ["https://ftvhd.com/diaries.json"];
+
+    document.addEventListener("DOMContentLoaded", obtenerAgenda);
+    document.addEventListener("click", (e) => {
+      const ev = e.target.closest(".evento");
+      if (!ev) return;
+      document.querySelectorAll(".servidores").forEach(el => el.classList.remove("activo"));
+      const serv = ev.querySelector(".servidores");
+      if (serv && !serv.classList.contains("activo")) serv.classList.add("activo");
+    });
+
+    function convertToUserTimeZone(limaHour) {
+      const dt = luxon.DateTime.fromFormat(limaHour, "HH:mm", { zone: "America/Lima" });
+      return dt.toLocal().toFormat("HH:mm");
+    }
+
+    function formatDate(dateString) {
+      return new Date(dateString).toLocaleDateString("es-ES", {
+        year: "numeric", month: "long", day: "numeric"
+      });
+    }
+
+    async function obtenerAgenda() {
+      const menu = document.getElementById("eventos");
+      const title = document.querySelector(".agenda-titulo");
+
+      try {
+        let data = [];
+        for (const url of AGENDA_URLS) {
+          const res = await fetch(url);
+          const json = await res.json();
+          if (Array.isArray(json.data)) data = data.concat(json.data);
+        }
+
+        menu.innerHTML = "";
+        title.textContent = "Agenda - " + formatDate(new Date().toISOString());
+        data.sort((a, b) => a.attributes.diary_hour.localeCompare(b.attributes.diary_hour));
+
+        data.forEach(item => {
+          const attr = item.attributes;
+          const hora = convertToUserTimeZone(attr.diary_hour);
+          const nombre = attr.diary_description;
+          const logo = attr.country?.data?.attributes?.image?.data?.attributes?.url 
+            ? "https://panel.futbollibretvs.pe" + attr.country.data.attributes.image.data.attributes.url
+            : "https://panel.futbollibretvs.pe/uploads/sin_imagen_d36205f0e8.png";
+
+          let html = `
+            <li class="evento">
+              <div class="fila">
+                <span class="hora-ovalo">${hora}</span>
+                <img src="${logo}" alt="" style="width:18px;height:18px;border-radius:50%;">
+                <span class="nombre-evento">${nombre}</span>
+              </div>
+              <div class="servidores">`;
+
+          if (attr.embeds?.data?.length > 0) {
+            attr.embeds.data.forEach(embed => {
+              const nombreServ = embed.attributes.embed_name || "Canal";
+              const iframeUrl = embed.attributes.embed_iframe || "";
+              const encoded = btoa(iframeUrl);
+              html += `<a href="reproductor.html?r=${encodeURIComponent(encoded)}" target="_blank" class="nombre-servidor">➤ ${nombreServ}</a>`;
+            });
+          } else {
+            html += `<span style="color:#888;">Próximamente...</span>`;
+          }
+
+          html += `</div></li>`;
+          menu.innerHTML += html;
+        });
+      } catch (e) {
+        menu.innerHTML = `<li style="color:red;padding:20px;">Error al cargar la agenda.</li>`;
+      }
+    }
+  </script>
+</body>
+</html>
