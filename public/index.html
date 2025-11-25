@@ -3,28 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Agenda Deportiva</title>
+  <title>Agenda - JJFUTBOL</title>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f5f5f5;
+      background: #0f0f15;
       margin: 0;
       padding: 15px;
+      color: white;
     }
     .container {
       max-width: 800px;
       margin: 0 auto;
-      background: white;
+      background: #1a1a25;
       border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
       overflow: hidden;
     }
     #title-agenda {
       text-align: center;
       padding: 16px;
-      background: #e74c3c;
+      background: #1e3a8a;
       color: white;
       margin: 0;
       font-size: 1.4em;
@@ -35,7 +36,7 @@
       margin: 0;
     }
     #menu li {
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid #2c2c3a;
     }
     #menu li > div {
       display: flex;
@@ -46,7 +47,7 @@
     #menu time {
       width: 60px;
       font-weight: bold;
-      color: #e74c3c;
+      color: #4ade80;
     }
     #menu .flag {
       width: 24px;
@@ -67,12 +68,17 @@
     .submenu-item {
       display: block;
       padding: 6px 0;
-      color: #3498db;
+      color: #60a5fa;
       text-decoration: none;
       font-weight: bold;
     }
     .submenu-item:hover {
-      color: #e74c3c;
+      color: #4ade80;
+    }
+    .loading {
+      padding: 20px;
+      text-align: center;
+      color: #aaa;
     }
   </style>
 </head>
@@ -81,14 +87,23 @@
     <h1 id="title-agenda">Agenda - Cargando...</h1>
     <ul id="menu"></ul>
   </div>
+
   <script>
-    // ✅ CONFIGURACIÓN FINAL (TU JSON LOCAL + TUS ENLACES)
-    const AGENDA_URL = "https://a.ftvhd.com/diaries.json";                  // Tu JSON local
-    const IMG_BASE   = "https://img.futbolonlinehd.com";
-    const SITE_BASE  = "https://jjfutbol.lat/";     // Tus enlaces reales
+    const FUENTES = [
+      {
+        url: "https://a.ftvhd.com/diaries.json",
+        imgBase: "https://img.futbolonlinehd.com",
+        siteBase: "https://jjfutbol.lat"
+      },
+      {
+        url: "https://golazoplay.com/agenda.json?v=1.0",
+        imgBase: "https://img.golazoplay.com",
+        siteBase: "https://jjfutbol.lat"
+      }
+    ];
 
     document.addEventListener("DOMContentLoaded", function () {
-      obtenerAgenda();
+      cargarAgendasCombinadas();
       $(document).on("click", ".submenu-item", function (e) { e.stopPropagation(); });
       $(document).on("click", ".toggle-submenu", function () {
         const $submenu = $(this).closest("li").find("ul");
@@ -99,34 +114,31 @@
           $submenu.slideUp();
         }
       });
-      setInterval(upgrade, 60000);
+      setInterval(cargarAgendasCombinadas, 60000);
     });
 
-    // --- Funciones de tu código original (sin cambios) ---
-    function upgrade() {
-      const menu  = document.getElementById("menu");
-      const title = document.getElementById("title-agenda");
-      refrescarAgenda(menu, title);
-    }
-
     function convertToUserTimeZone(utcHour) {
-      const DateTime = luxon.DateTime;
-      const utcDate  = DateTime.fromISO(utcHour, { zone: "America/Lima" });
-      return utcDate.toLocal().toFormat("HH:mm");
+      if (!utcHour) return "--:--";
+      try {
+        const clean = utcHour.split(':').slice(0, 2).join(':');
+        const dt = luxon.DateTime.fromFormat(clean, "HH:mm", { zone: "America/Lima" });
+        return dt.toLocal().toFormat("HH:mm");
+      } catch (e) {
+        return "--:--";
+      }
     }
 
-    function formatLocalISODateToEs(dateStr) {
+    function formatDateSpanish(dateStr) {
       const [y, m, d] = (dateStr || "").split("-").map(Number);
       if (!y || !m || !d) return null;
       const dt = new Date(y, m - 1, d);
       return dt.toLocaleDateString("es-ES", { year: "numeric", month: "long", day: "numeric" });
     }
 
-    function extractDiaryDate(result) {
-      const arr = (result && result.data) ? result.data : [];
-      const dates = arr.map(it => it?.attributes?.date_diary).filter(Boolean);
-      if (dates.length === 0) return null;
-      const counts = Object.create(null);
+    function extraerFechaMasComun(todosEventos) {
+      const dates = todosEventos.map(it => it?.attributes?.date_diary).filter(Boolean);
+      if (dates.length === 0) return new Date().toISOString().split('T')[0];
+      const counts = {};
       let best = dates[0], max = 0;
       for (const d of dates) {
         counts[d] = (counts[d] || 0) + 1;
@@ -135,83 +147,110 @@
       return best;
     }
 
-    function setAgendaTitle(result, el) {
-      const dd = extractDiaryDate(result);
-      const text = dd ? formatLocalISODateToEs(dd) : new Date().toLocaleDateString("es-ES");
-      if (el) el.innerHTML = "Agenda - " + text;
-    }
-
-    async function refrescarAgenda(menu, title) {
+    function extraerParametroR(urlRelativa) {
       try {
-        const r = await fetch(AGENDA_URL, { cache: "no-store" });
-        const result = await r.json();
-        renderAgenda(result, menu, title);
-      } catch (e) { console.error("Error al refrescar agenda:", e); }
+        const partes = urlRelativa.split('?');
+        if (partes.length > 1) {
+          const params = new URLSearchParams(partes[1]);
+          return params.get("r");
+        }
+      } catch (e) {
+        console.warn("Error extrayendo parámetro r:", urlRelativa);
+      }
+      return null;
     }
 
-    async function obtenerAgenda() {
-      const menu  = document.getElementById("menu");
-      const title = document.getElementById("title-agenda");
-      try {
-        const r = await fetch(AGENDA_URL, { cache: "no-store" });
-        const result = await r.json();
-        renderAgenda(result, menu, title);
-      } catch (e) { console.error("❌ Error al cargar la agenda:", e); }
-    }
+    async function cargarAgendasCombinadas() {
+      const menu = document.getElementById("menu");
+      menu.innerHTML = '<li><div class="loading">Cargando agenda combinada...</div></li>';
 
-    function renderAgenda(result, menu, title) {
-      if (!result || !result.data) {
-        if (title) title.innerHTML = "Agenda - Sin datos";
-        if (menu)  menu.innerHTML  = "";
+      let todosEventos = [];
+      for (const fuente of FUENTES) {
+        try {
+          const res = await fetch(fuente.url + "?t=" + Date.now());
+          const result = await res.json();
+          if (result?.data?.length) {
+            result.data.forEach(item => {
+              // Añadir metadatos de la fuente para imágenes y enlaces
+              item._imgBase = fuente.imgBase;
+              item._siteBase = fuente.siteBase;
+              todosEventos.push(item);
+            });
+          }
+        } catch (e) {
+          console.error(`Error en fuente ${fuente.url}:`, e);
+        }
+      }
+
+      if (todosEventos.length === 0) {
+        menu.innerHTML = '<li><div class="loading" style="color:red;">No se encontraron eventos.</div></li>';
+        document.getElementById("title-agenda").textContent = "Agenda - Sin datos";
         return;
       }
 
-      setAgendaTitle(result, title);
-      const data = (result.data || []).slice().sort((a, b) => {
-        const A = (a?.attributes?.date_diary || "") + (a?.attributes?.diary_hour || "");
-        const B = (b?.attributes?.date_diary || "") + (b?.attributes?.diary_hour || "");
+      // Ordenar por hora
+      todosEventos.sort((a, b) => {
+        const A = (a.attributes?.date_diary || "") + (a.attributes?.diary_hour || "");
+        const B = (b.attributes?.date_diary || "") + (b.attributes?.diary_hour || "");
         return A.localeCompare(B);
       });
 
+      // Título único
+      const fechaTitulo = extraerFechaMasComun(todosEventos);
+      const titulo = formatDateSpanish(fechaTitulo) || new Date().toLocaleDateString("es-ES");
+      document.getElementById("title-agenda").textContent = "Agenda - " + titulo;
+
+      // Renderizar todos los eventos juntos
       let html = "";
-      data.forEach((value) => {
-        const attr = value.attributes || {};
-        const embeds = (attr.embeds && attr.embeds.data) || [];
-        let imageUrl = `${IMG_BASE}/uploads/sin_imagen_d36205f0e8.png`;
-        const flag = attr.country?.data?.attributes?.image?.data?.attributes?.url;
-        if (flag) imageUrl = `${IMG_BASE}${flag}`;
+      todosEventos.forEach(item => {
+        const attr = item.attributes || {};
+        const hora = convertToUserTimeZone(attr.diary_hour);
+        const nombre = attr.diary_description || "Evento sin título";
+        const flagUrl = attr.country?.data?.attributes?.image?.data?.attributes?.url;
+        const imageUrl = flagUrl ? item._imgBase + flagUrl : item._imgBase + "/uploads/sin_imagen_d36205f0e8.png";
+
+        let canalesHtml = '<ul style="display:none;">';
+        const embeds = attr.embeds?.data || [];
+        if (embeds.length > 0) {
+          embeds.forEach(embed => {
+            if (!embed?.attributes) return;
+            const nombreCanal = embed.attributes.embed_name || "Ver enlace";
+            const urlRelativa = (embed.attributes.embed_iframe || "").trim();
+            let urlFinal = "#";
+
+            const r = extraerParametroR(urlRelativa);
+            if (r) {
+              urlFinal = `${item._siteBase}/embed/eventos.html?r=${encodeURIComponent(r)}`;
+            } else if (urlRelativa.startsWith("/")) {
+              urlFinal = item._siteBase + urlRelativa;
+            } else if (urlRelativa.startsWith("http")) {
+              urlFinal = urlRelativa;
+            }
+
+            canalesHtml += `
+              <li class="submenu">
+                <a href="${urlFinal}" class="submenu-item" target="_blank">
+                  <i class="fa fa-play-circle"></i> ${nombreCanal}
+                </a>
+              </li>`;
+          });
+        } else {
+          canalesHtml += `<li class="submenu"><span class="submenu-item" style="color:#666;">Próximamente...</span></li>`;
+        }
+        canalesHtml += '</ul>';
 
         html += `
           <li class="toggle-submenu">
             <div>
-              <time>${attr.diary_hour ? convertToUserTimeZone(attr.diary_hour) : "--:--"}</time>
+              <time>${hora}</time>
               <img class="flag" src="${imageUrl}" alt="Bandera">
-              <span class="match">${attr.diary_description || "Evento sin título"}</span>
+              <span class="match">${nombre}</span>
             </div>
-            <ul style="display:none;">
-              ${
-                embeds.map(embed => {
-                  if (!embed || !embed.attributes) return "";
-                  let urlComplete = (embed.attributes.embed_iframe || "").trim();
-                  if (urlComplete.startsWith("/")) {
-                    urlComplete = SITE_BASE + urlComplete;
-                  }
-                  if (!urlComplete) {
-                    urlComplete = SITE_BASE + "/embed/eventos.html?r=";
-                  }
-                  return `
-                    <li class="submenu">
-                      <a href="${urlComplete}" class="submenu-item" target="_blank">
-                        <i class="fa fa-play-circle"></i> ${embed.attributes.embed_name || "Ver enlace"}
-                      </a>
-                    </li>`;
-                }).join("")
-              }
-            </ul>
+            ${canalesHtml}
           </li>`;
       });
 
-      if (menu) menu.innerHTML = html;
+      menu.innerHTML = html;
     }
   </script>
 </body>
