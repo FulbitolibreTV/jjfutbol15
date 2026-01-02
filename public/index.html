@@ -5,13 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>Agenda Premium - JJFUTBOL</title>
   
-  <!-- Librerías Externas -->
+  <!-- Librerías -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
-  <!-- Fuente Google: Outfit (Moderna y Deportiva) -->
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <!-- Iconos FontAwesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
@@ -52,7 +50,6 @@
     header {
       text-align: center;
       margin-bottom: 30px;
-      position: relative;
     }
 
     h1#title-agenda {
@@ -115,8 +112,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: relative;
-      z-index: 2;
     }
 
     .time-badge {
@@ -202,6 +197,7 @@
       font-size: 0.85rem;
       font-weight: 500;
       transition: all 0.2s ease;
+      cursor: pointer;
     }
 
     .channel-btn:hover {
@@ -234,8 +230,8 @@
       margin-bottom: 15px;
     }
 
-    @keyframes spin { 
-      100% { transform: rotate(360deg); } 
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
     }
 
     .no-events {
@@ -251,28 +247,29 @@
       width: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: var(--bg-dark); 
+      background: var(--bg-dark);
     }
     ::-webkit-scrollbar-thumb {
-      background: #334155; 
+      background: #334155;
       border-radius: 3px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: var(--accent); 
+      background: var(--accent);
+    }
+
+    /* Modal reproductor limpio */
+    #cleanPlayerModal {
+      display: none;
     }
   </style>
 </head>
 <body>
-
   <div class="container">
     <header>
       <div class="subtitle">JJFUTBOL</div>
       <h1 id="title-agenda">CARGANDO...</h1>
     </header>
-    
-    <ul id="menu">
-      <!-- El contenido se inyecta aquí -->
-    </ul>
+    <ul id="menu"></ul>
   </div>
 
   <script>
@@ -289,26 +286,55 @@
       }
     ];
 
-    document.addEventListener("DOMContentLoaded", function () {
-      cargarAgendasCombinadas();
-      
-      $(document).on("click", ".match-card", function () {
-        const $this = $(this);
-        const $submenu = $this.find(".channels-container");
-        
-        $(".match-card").not($this).removeClass("active").find(".channels-container").slideUp(300);
-        
-        $this.toggleClass("active");
-        $submenu.slideToggle(300);
-      });
+    // ————— MODAL ANTI-ANUNCIOS —————
+    function openCleanPlayer(embedUrl) {
+      let modal = document.getElementById("cleanPlayerModal");
+      if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "cleanPlayerModal";
+        modal.innerHTML = `
+          <div style="position:fixed;top:0;left:0;width:100%;height:100%;background:black;z-index:9999;display:flex;flex-direction:column;">
+            <div style="padding:10px;background:rgba(0,0,0,0.8);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #334155;">
+              <span style="color:white;font-weight:bold;">📺 Reproduciendo en JJFUTBOL</span>
+              <button id="closePlayerBtn" style="background:#1e1e28;border:1px solid #334155;color:#9ca3af;padding:6px 12px;border-radius:6px;cursor:pointer;">
+                <i class="fas fa-times"></i> Cerrar
+              </button>
+            </div>
+            <div style="flex:1;width:100%;position:relative;">
+              <iframe
+                id="cleanPlayerFrame"
+                src=""
+                allowfullscreen
+                allow="autoplay; encrypted-media"
+                sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-top-navigation allow-popups"
+                style="width:100%;height:100%;border:none;background:black;"
+              ></iframe>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(modal);
+      }
 
-      $(document).on("click", ".channel-btn", function (e) {
-        e.stopPropagation();
-      });
+      const playerFrame = document.getElementById("cleanPlayerFrame");
+      playerFrame.src = embedUrl;
+      modal.style.display = "flex";
 
-      setInterval(cargarAgendasCombinadas, 60000);
-    });
+      document.getElementById("closePlayerBtn").onclick = () => {
+        modal.style.display = "none";
+        playerFrame.src = "";
+      };
 
+      const handleEsc = (e) => {
+        if (e.key === "Escape") {
+          modal.style.display = "none";
+          playerFrame.src = "";
+          window.removeEventListener("keydown", handleEsc);
+        }
+      };
+      window.addEventListener("keydown", handleEsc);
+    }
+
+    // ————— UTILIDADES —————
     function convertToUserTimeZone(utcHour) {
       if (!utcHour) return "--:--";
       try {
@@ -347,10 +373,34 @@
           return params.get("r");
         }
       } catch (e) {
-        console.warn("Error params:", urlRelativa);
+        console.warn("Error al extraer parámetro r:", urlRelativa);
       }
       return null;
     }
+
+    // ————— CARGA Y RENDER —————
+    document.addEventListener("DOMContentLoaded", () => {
+      cargarAgendasCombinadas();
+      setInterval(cargarAgendasCombinadas, 60000);
+    });
+
+    document.addEventListener("click", (e) => {
+      if (e.target.closest(".match-card") && !e.target.closest(".channel-btn")) {
+        const card = e.target.closest(".match-card");
+        const isActive = card.classList.contains("active");
+        document.querySelectorAll(".match-card").forEach(c => c.classList.remove("active"));
+        if (!isActive) card.classList.add("active");
+      }
+
+      if (e.target.closest(".channel-btn")) {
+        e.preventDefault();
+        const btn = e.target.closest(".channel-btn");
+        const href = btn.getAttribute("data-embed-url");
+        if (href && href !== "#") {
+          openCleanPlayer(href); // ✅ ABRE SIN ANUNCIOS
+        }
+      }
+    });
 
     async function cargarAgendasCombinadas() {
       const menu = document.getElementById("menu");
@@ -364,22 +414,17 @@
       }
 
       let todosEventos = [];
-      
-      const promesas = FUENTES.map(fuente => 
+      const promesas = FUENTES.map(fuente =>
         fetch(fuente.url + "?t=" + Date.now())
           .then(res => res.json())
           .then(result => {
-            if (result?.data?.length) {
-              return result.data.map(item => ({
-                ...item,
-                _imgBase: fuente.imgBase,
-                _siteBase: fuente.siteBase
-              }));
+            if (Array.isArray(result?.data)) {
+              return result.data.map(item => ({ ...item, _imgBase: fuente.imgBase, _siteBase: fuente.siteBase }));
             }
             return [];
           })
           .catch(e => {
-            console.error("Error fetching source:", e);
+            console.error("Error en fuente:", fuente.url, e);
             return [];
           })
       );
@@ -393,85 +438,74 @@
         return;
       }
 
+      // Eliminar duplicados
+      const vistos = new Set();
       const unicos = [];
-      const keysVistas = new Set();
-      todosEventos.forEach(ev => {
+      for (const ev of todosEventos) {
         const key = (ev.attributes?.diary_description || "") + "|" + (ev.attributes?.diary_hour || "");
-        if (!keysVistas.has(key)) {
-            keysVistas.add(key);
-            unicos.push(ev);
+        if (!vistos.has(key)) {
+          vistos.add(key);
+          unicos.push(ev);
         }
-      });
+      }
       todosEventos = unicos;
 
+      // Ordenar
       todosEventos.sort((a, b) => {
-        const A = (a.attributes?.date_diary || "");
-        const B = (b.attributes?.date_diary || "");
+        const A = (a.attributes?.date_diary || "") + (a.attributes?.diary_hour || "");
+        const B = (b.attributes?.date_diary || "") + (b.attributes?.diary_hour || "");
         return A.localeCompare(B);
       });
 
-      const fechaTitulo = extraerFechaMasComun(todosEventos);
-      const titulo = formatDateSpanish(fechaTitulo) || "Agenda Deportiva";
+      // Título
+      const fecha = extraerFechaMasComun(todosEventos);
+      const titulo = formatDateSpanish(fecha) || "Agenda Deportiva";
       document.getElementById("title-agenda").textContent = titulo;
 
+      // Render
       let html = "";
-      
-      todosEventos.forEach((item, index) => {
+      todosEventos.forEach((item, idx) => {
         const attr = item.attributes || {};
         const hora = convertToUserTimeZone(attr.diary_hour);
-        const nombre = attr.diary_description || "Evento Disponible";
-        let flagUrl = item._imgBase + "/uploads/sin_imagen_d36205f0e8.png";
+        const nombre = attr.diary_description || "Evento sin título";
+        const flagUrl = attr.country?.data?.attributes?.image?.data?.attributes?.url;
+        const imgSrc = flagUrl ? item._imgBase + flagUrl : item._imgBase + "/uploads/sin_imagen_d36205f0e8.png";
 
-        if (attr.country?.data?.attributes?.image?.data?.attributes?.url) {
-            flagUrl = item._imgBase + attr.country.data.attributes.image.data.attributes.url;
-        }
-
-        let botonesHtml = "";
+        let canales = "";
         const embeds = attr.embeds?.data || [];
-        
         if (embeds.length > 0) {
           embeds.forEach(embed => {
             if (!embed?.attributes) return;
-            const nombreCanal = embed.attributes.embed_name || "Ver Opción";
-            const urlRelativa = (embed.attributes.embed_iframe || "").trim();
+            const nombreCanal = embed.attributes.embed_name || "Ver enlace";
+            let urlRel = (embed.attributes.embed_iframe || "").trim();
             let urlFinal = "#";
-
-            const r = extraerParametroR(urlRelativa);
+            const r = extraerParametroR(urlRel);
             if (r) {
               urlFinal = `${item._siteBase}/embed/eventos.html?r=${encodeURIComponent(r)}`;
-            } else if (urlRelativa.startsWith("/")) {
-              urlFinal = item._siteBase + urlRelativa;
-            } else if (urlRelativa.startsWith("http")) {
-              urlFinal = urlRelativa;
+            } else if (urlRel.startsWith("/")) {
+              urlFinal = item._siteBase + urlRel;
+            } else if (urlRel.startsWith("http")) {
+              urlFinal = urlRel;
             }
-
-            botonesHtml += `
-              <li>
-                <a href="${urlFinal}" class="channel-btn" target="_blank">
-                  <i class="fas fa-play"></i> ${nombreCanal}
-                </a>
-              </li>`;
+            canales += `<li><a class="channel-btn" data-embed-url="${urlFinal}"><i class="fas fa-play"></i> ${nombreCanal}</a></li>`;
           });
         } else {
-          botonesHtml = `<li><span class="channel-btn" style="opacity:0.6; cursor:default;">Próximamente...</span></li>`;
+          canales = `<li><span class="channel-btn" style="opacity:0.6; cursor:default;">Próximamente...</span></li>`;
         }
 
-        const delay = index * 0.05; 
-        
+        const delay = idx * 0.05;
         html += `
           <li class="match-card" style="animation-delay: ${delay}s">
             <div class="card-header">
               <div class="time-badge">${hora}</div>
               <div class="match-info">
-                <img class="league-flag" src="${flagUrl}" onerror="this.src='https://via.placeholder.com/32?text=TV'" alt="League">
+                <img class="league-flag" src="${imgSrc}" onerror="this.src='https://via.placeholder.com/32?text=TV'" alt="Bandera">
                 <span class="match-title">${nombre}</span>
               </div>
               <i class="fas fa-chevron-down toggle-icon"></i>
             </div>
             <div class="channels-container">
-              <ul class="channels-list">
-                ${botonesHtml}
-              </ul>
+              <ul class="channels-list">${canales}</ul>
             </div>
           </li>`;
       });
