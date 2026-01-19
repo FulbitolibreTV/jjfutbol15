@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>Agenda Premium - JJFUTBOL</title>
   
-  <!-- Librerías -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
@@ -197,7 +196,6 @@
       font-size: 0.85rem;
       font-weight: 500;
       transition: all 0.2s ease;
-      cursor: pointer;
     }
 
     .channel-btn:hover {
@@ -256,11 +254,6 @@
     ::-webkit-scrollbar-thumb:hover {
       background: var(--accent);
     }
-
-    /* Modal reproductor limpio */
-    #cleanPlayerModal {
-      display: none;
-    }
   </style>
 </head>
 <body>
@@ -273,68 +266,35 @@
   </div>
 
   <script>
+    // CONFIGURACIÓN DE FUENTES Y DOMINIO
     const FUENTES = [
       {
         url: "https://a.ftvhd.com/diaries.json",
         imgBase: "https://img.futbolonlinehd.com",
-        siteBase: "https://jjfutbol15.vercel.app"
+        siteBase: "https://jjfutbol15.vercel.app" // TU NUEVO DOMINIO AQUÍ
       },
       {
         url: "https://golazoplay.com/agenda.json?v=1.0",
         imgBase: "https://img.golazoplay.com",
-        siteBase: "https://jjfutbol15.vercel.app"
+        siteBase: "https://jjfutbol15.vercel.app" // TU NUEVO DOMINIO AQUÍ
       }
     ];
 
-    // ————— MODAL ANTI-ANUNCIOS —————
-    function openCleanPlayer(embedUrl) {
-      let modal = document.getElementById("cleanPlayerModal");
-      if (!modal) {
-        modal = document.createElement("div");
-        modal.id = "cleanPlayerModal";
-        modal.innerHTML = `
-          <div style="position:fixed;top:0;left:0;width:100%;height:100%;background:black;z-index:9999;display:flex;flex-direction:column;">
-            <div style="padding:10px;background:rgba(0,0,0,0.8);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #334155;">
-              <span style="color:white;font-weight:bold;">📺 Reproduciendo en JJFUTBOL</span>
-              <button id="closePlayerBtn" style="background:#1e1e28;border:1px solid #334155;color:#9ca3af;padding:6px 12px;border-radius:6px;cursor:pointer;">
-                <i class="fas fa-times"></i> Cerrar
-              </button>
-            </div>
-            <div style="flex:1;width:100%;position:relative;">
-              <iframe
-                id="cleanPlayerFrame"
-                src=""
-                allowfullscreen
-                allow="autoplay; encrypted-media"
-                sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-top-navigation allow-popups"
-                style="width:100%;height:100%;border:none;background:black;"
-              ></iframe>
-            </div>
-          </div>
-        `;
-        document.body.appendChild(modal);
-      }
+    document.addEventListener("DOMContentLoaded", () => {
+      cargarAgendasCombinadas();
 
-      const playerFrame = document.getElementById("cleanPlayerFrame");
-      playerFrame.src = embedUrl;
-      modal.style.display = "flex";
+      $(document).on("click", ".match-card", function () {
+        const $this = $(this);
+        const $submenu = $this.find(".channels-container");
+        $(".match-card").not($this).removeClass("active").find(".channels-container").slideUp(300);
+        $this.toggleClass("active");
+        $submenu.slideToggle(300);
+      });
 
-      document.getElementById("closePlayerBtn").onclick = () => {
-        modal.style.display = "none";
-        playerFrame.src = "";
-      };
+      $(document).on("click", ".channel-btn", e => e.stopPropagation());
+      setInterval(cargarAgendasCombinadas, 60000);
+    });
 
-      const handleEsc = (e) => {
-        if (e.key === "Escape") {
-          modal.style.display = "none";
-          playerFrame.src = "";
-          window.removeEventListener("keydown", handleEsc);
-        }
-      };
-      window.addEventListener("keydown", handleEsc);
-    }
-
-    // ————— UTILIDADES —————
     function convertToUserTimeZone(utcHour) {
       if (!utcHour) return "--:--";
       try {
@@ -377,30 +337,6 @@
       }
       return null;
     }
-
-    // ————— CARGA Y RENDER —————
-    document.addEventListener("DOMContentLoaded", () => {
-      cargarAgendasCombinadas();
-      setInterval(cargarAgendasCombinadas, 60000);
-    });
-
-    document.addEventListener("click", (e) => {
-      if (e.target.closest(".match-card") && !e.target.closest(".channel-btn")) {
-        const card = e.target.closest(".match-card");
-        const isActive = card.classList.contains("active");
-        document.querySelectorAll(".match-card").forEach(c => c.classList.remove("active"));
-        if (!isActive) card.classList.add("active");
-      }
-
-      if (e.target.closest(".channel-btn")) {
-        e.preventDefault();
-        const btn = e.target.closest(".channel-btn");
-        const href = btn.getAttribute("data-embed-url");
-        if (href && href !== "#") {
-          openCleanPlayer(href); // ✅ ABRE SIN ANUNCIOS
-        }
-      }
-    });
 
     async function cargarAgendasCombinadas() {
       const menu = document.getElementById("menu");
@@ -450,7 +386,7 @@
       }
       todosEventos = unicos;
 
-      // Ordenar
+      // Ordenar por fecha + hora
       todosEventos.sort((a, b) => {
         const A = (a.attributes?.date_diary || "") + (a.attributes?.diary_hour || "");
         const B = (b.attributes?.date_diary || "") + (b.attributes?.diary_hour || "");
@@ -479,15 +415,18 @@
             const nombreCanal = embed.attributes.embed_name || "Ver enlace";
             let urlRel = (embed.attributes.embed_iframe || "").trim();
             let urlFinal = "#";
+
             const r = extraerParametroR(urlRel);
             if (r) {
-              urlFinal = `${item._siteBase}/embed/eventos.html?r=${encodeURIComponent(r)}`;
+              // RUTA ACTUALIZADA A LA RAÍZ
+              urlFinal = `${item._siteBase}/eventos.html?r=${encodeURIComponent(r)}`;
             } else if (urlRel.startsWith("/")) {
               urlFinal = item._siteBase + urlRel;
             } else if (urlRel.startsWith("http")) {
               urlFinal = urlRel;
             }
-            canales += `<li><a class="channel-btn" data-embed-url="${urlFinal}"><i class="fas fa-play"></i> ${nombreCanal}</a></li>`;
+
+            canales += `<li><a href="${urlFinal}" class="channel-btn" target="_blank"><i class="fas fa-play"></i> ${nombreCanal}</a></li>`;
           });
         } else {
           canales = `<li><span class="channel-btn" style="opacity:0.6; cursor:default;">Próximamente...</span></li>`;
