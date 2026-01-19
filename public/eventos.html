@@ -1,104 +1,172 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Agenda - JJFUTBOL</title>
-  <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
-  <style>
-    body { font-family: Arial, sans-serif; background: #0f0f15; color: white; padding: 20px; }
-    .fila { display: flex; align-items: center; gap: 10px; margin: 12px 0; }
-    .hora-ovalo {
-      background: #1e3a8a; color: white; padding: 4px 10px;
-      border-radius: 12px; font-weight: bold;
-    }
-    .nombre-evento { flex: 1; }
-    .servidores { display: none; padding-left: 32px; margin-top: 8px; }
-    .servidores.activo { display: block; }
-    .nombre-servidor {
-      display: block; color: #4ade80; text-decoration: none; margin: 4px 0;
-    }
-    .evento { border-bottom: 1px solid #222; padding: 12px 0; }
-  </style>
-</head>
-<body>
-  <h2 class="agenda-titulo">Cargando agenda...</h2>
-  <ul id="eventos"></ul>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Reproductor Seguro | JJFUTBOL</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <script>
-    const AGENDA_URLS = ["https://ftvhd.com/diaries.json"];
-
-    document.addEventListener("DOMContentLoaded", obtenerAgenda);
-    document.addEventListener("click", (e) => {
-      const ev = e.target.closest(".evento");
-      if (!ev) return;
-      document.querySelectorAll(".servidores").forEach(el => el.classList.remove("activo"));
-      const serv = ev.querySelector(".servidores");
-      if (serv && !serv.classList.contains("activo")) serv.classList.add("activo");
-    });
-
-    function convertToUserTimeZone(limaHour) {
-      const dt = luxon.DateTime.fromFormat(limaHour, "HH:mm", { zone: "America/Lima" });
-      return dt.toLocal().toFormat("HH:mm");
-    }
-
-    function formatDate(dateString) {
-      return new Date(dateString).toLocaleDateString("es-ES", {
-        year: "numeric", month: "long", day: "numeric"
-      });
-    }
-
-    async function obtenerAgenda() {
-      const menu = document.getElementById("eventos");
-      const title = document.querySelector(".agenda-titulo");
-
-      try {
-        let data = [];
-        for (const url of AGENDA_URLS) {
-          const res = await fetch(url);
-          const json = await res.json();
-          if (Array.isArray(json.data)) data = data.concat(json.data);
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: 'Chakra Petch', sans-serif; overflow: hidden; }
+        
+        /* Contenedor del Video */
+        #player-container {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column;
         }
 
-        menu.innerHTML = "";
-        title.textContent = "Agenda - " + formatDate(new Date().toISOString());
-        data.sort((a, b) => a.attributes.diary_hour.localeCompare(b.attributes.diary_hour));
+        /* Barra Superior Flotante */
+        .top-bar {
+            position: absolute; top: 0; left: 0; width: 100%; z-index: 50;
+            padding: 15px; background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            display: flex; justify-content: space-between; align-items: center;
+            pointer-events: none; /* Para que los clicks pasen si no tocan botones */
+        }
+        .top-bar button { pointer-events: auto; }
 
-        data.forEach(item => {
-          const attr = item.attributes;
-          const hora = convertToUserTimeZone(attr.diary_hour);
-          const nombre = attr.diary_description;
-          const logo = attr.country?.data?.attributes?.image?.data?.attributes?.url 
-            ? "https://panel.futbollibretvs.pe" + attr.country.data.attributes.image.data.attributes.url
-            : "https://panel.futbollibretvs.pe/uploads/sin_imagen_d36205f0e8.png";
+        /* Iframe */
+        iframe { width: 100%; height: 100%; border: none; flex: 1; z-index: 10; }
 
-          let html = `
-            <li class="evento">
-              <div class="fila">
-                <span class="hora-ovalo">${hora}</span>
-                <img src="${logo}" alt="" style="width:18px;height:18px;border-radius:50%;">
-                <span class="nombre-evento">${nombre}</span>
-              </div>
-              <div class="servidores">`;
+        /* Trampa de Clics (Anti-Ads) */
+        .click-shield {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 40; cursor: pointer; background: transparent;
+        }
 
-          if (attr.embeds?.data?.length > 0) {
-            attr.embeds.data.forEach(embed => {
-              const nombreServ = embed.attributes.embed_name || "Canal";
-              const iframeUrl = embed.attributes.embed_iframe || "";
-              const encoded = btoa(iframeUrl);
-              html += `<a href="reproductor.html?r=${encodeURIComponent(encoded)}" target="_blank" class="nombre-servidor">➤ ${nombreServ}</a>`;
-            });
-          } else {
-            html += `<span style="color:#888;">Próximamente...</span>`;
-          }
+        /* Botón de Emergencia */
+        #unlock-btn {
+            background: rgba(220, 38, 38, 0.9); border: 1px solid #ff0000;
+            color: white; padding: 5px 15px; border-radius: 5px;
+            font-size: 10px; font-weight: bold; uppercase; letter-spacing: 1px;
+            cursor: pointer; transition: all 0.3s;
+            display: flex; align-items: center; gap: 5px;
+            box-shadow: 0 0 10px rgba(255,0,0,0.3);
+        }
+        #unlock-btn:hover { background: #ff0000; transform: scale(1.05); }
 
-          html += `</div></li>`;
-          menu.innerHTML += html;
-        });
-      } catch (e) {
-        menu.innerHTML = `<li style="color:red;padding:20px;">Error al cargar la agenda.</li>`;
-      }
-    }
-  </script>
+        /* Logo */
+        .logo { font-weight: 900; font-size: 18px; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .logo span { color: #3b82f6; }
+
+        /* Loader */
+        #loader {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 30;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .spinner {
+            width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.1);
+            border-left-color: #3b82f6; border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <div class="spinner"></div>
+        <p style="margin-top:15px; font-size:12px; color:#888; letter-spacing:2px;">ESTABLECIENDO CONEXIÓN SEGURA...</p>
+    </div>
+
+    <div id="player-container">
+        <div class="top-bar">
+            <div class="logo">JJ<span>FUTBOL</span></div>
+            
+            <button id="unlock-btn" onclick="desbloquearReproductor()">
+                <i class="fas fa-shield-alt"></i> DESBLOQUEAR / OPCIÓN 2
+            </button>
+        </div>
+
+        <div id="click-shield" class="click-shield" onclick="removeShield()"></div>
+
+        <div id="video-wrapper" style="width:100%; height:100%; position:relative;"></div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const r = params.get('r');
+        let currentUrl = '';
+
+        // Función Principal
+        function initPlayer() {
+            if (r) {
+                try {
+                    // Decodificar URL
+                    const decoded = atob(decodeURIComponent(r));
+                    if (decoded.startsWith('http')) {
+                        currentUrl = decoded;
+                        cargarIframe(currentUrl, true); // true = Modo Seguro (Sandbox)
+                    } else {
+                        showError('Enlace corrupto o inválido.');
+                    }
+                } catch (e) {
+                    showError('Error al decodificar la señal.');
+                }
+            } else {
+                showError('No se especificó ninguna señal.');
+            }
+        }
+
+        // Cargar el Iframe
+        function cargarIframe(url, modoSeguro) {
+            const wrapper = document.getElementById('video-wrapper');
+            const loader = document.getElementById('loader');
+            
+            wrapper.innerHTML = ''; // Limpiar anterior
+
+            const iframe = document.createElement('iframe');
+            iframe.src = url;
+            iframe.allow = "autoplay; encrypted-media; fullscreen";
+            iframe.setAttribute('allowfullscreen', '');
+            
+            // LÓGICA DE BLOQUEO (SANDBOX)
+            if (modoSeguro) {
+                // Bloquea popups, formularios, descargas, etc. Solo permite scripts y reproducción.
+                iframe.setAttribute('sandbox', 'allow-forms allow-scripts allow-same-origin allow-pointer-lock allow-presentation');
+                document.getElementById('unlock-btn').style.display = 'flex';
+                document.getElementById('click-shield').style.display = 'block';
+            } else {
+                // Modo "Desbloqueado" (Sin sandbox, por si el video no cargaba)
+                iframe.removeAttribute('sandbox');
+                document.getElementById('unlock-btn').style.display = 'none'; // Ya está desbloqueado
+                document.getElementById('click-shield').style.display = 'none'; // Sin escudo
+            }
+
+            iframe.onload = () => {
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => loader.style.display = 'none', 500);
+                }, 1500); // Pequeño delay para asegurar carga
+            };
+
+            wrapper.appendChild(iframe);
+        }
+
+        // Función del Escudo Invisible
+        function removeShield() {
+            const shield = document.getElementById('click-shield');
+            shield.style.display = 'none';
+            console.log("JJFUTBOL: Publicidad interceptada.");
+        }
+
+        // Función del Botón Rojo (Opción 2)
+        function desbloquearReproductor() {
+            const confirmacion = confirm("¿El video no carga o se queda en negro?\n\nAl desbloquear, el video cargará pero podrían salir ventanas emergentes.\n\n¿Deseas continuar?");
+            if (confirmacion) {
+                cargarIframe(currentUrl, false); // Cargar SIN seguridad
+            }
+        }
+
+        function showError(msg) {
+            document.body.innerHTML = `<div style="display:flex;height:100%;justify-content:center;align-items:center;flex-direction:column;color:#ef4444;"><i class="fas fa-exclamation-triangle" style="font-size:30px;margin-bottom:10px;"></i><p>${msg}</p></div>`;
+        }
+
+        // Iniciar
+        window.onload = initPlayer;
+    </script>
 </body>
 </html>
